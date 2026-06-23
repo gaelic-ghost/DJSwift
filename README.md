@@ -24,6 +24,12 @@ cd Server
 swift build
 ```
 
+Run the database-backed server tests:
+
+```sh
+scripts/test-server.sh
+```
+
 Run the server locally:
 
 ```sh
@@ -36,4 +42,3 @@ Set `DATABASE_URL` when PostgreSQL-backed features are added. The current bootst
 ## Rights
 
 Copyright (c) 2026 Gale W. All rights reserved.
-
