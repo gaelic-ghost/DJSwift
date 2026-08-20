@@ -1,0 +1,28 @@
+targetTemplates:
+  SwiftUIApp:
+    type: application
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+  SwiftTesting:
+    type: bundle.unit-test
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+  SwiftUIAutomation:
+    type: bundle.ui-testing
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+schemeTemplates:
+  AppScheme:
+    run: { config: Debug }
+    test:
+      config: Debug
+      gatherCoverageData: true
+    archive: { config: Staging }
+    management: { shared: true }

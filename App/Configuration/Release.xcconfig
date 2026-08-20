@@ -1,5 +1,0 @@
-#include "Base.xcconfig"
-
-COPY_PHASE_STRIP = YES
-SWIFT_COMPILATION_MODE = wholemodule
-

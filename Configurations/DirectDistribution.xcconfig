@@ -1,0 +1,2 @@
+#include "Release.xcconfig"
+DJ_DISTRIBUTION_CHANNEL = direct-distribution
