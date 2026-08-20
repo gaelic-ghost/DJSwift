@@ -1,0 +1,7 @@
+version = 1
+name = "djswift"
+
+[[actions]]
+name = "server-test"
+icon = "check-circle"
+command = "scripts/test-server.sh"

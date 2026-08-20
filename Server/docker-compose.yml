@@ -69,4 +69,4 @@ services:
       POSTGRES_PASSWORD: *db_password
       POSTGRES_DB: *db_name
     ports:
-      - '5432:5432'
+      - '${DATABASE_HOST_PORT:-5432}:5432'
