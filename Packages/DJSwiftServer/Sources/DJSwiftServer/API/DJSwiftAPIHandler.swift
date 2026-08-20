@@ -1,4 +1,5 @@
 import DJSwiftAPI
+import DJSwiftDomain
 import Fluent
 import Foundation
 import Redis
@@ -17,7 +18,7 @@ struct DJSwiftAPIHandler: APIProtocol {
         let stations = try await StationRecord.query(on: application.db)
             .sort(\.$name)
             .all()
-            .map { try $0.transport() }
+            .map { try $0.station() }
         return .ok(.init(body: .json(.init(stations: stations))))
     }
 
@@ -25,7 +26,7 @@ struct DJSwiftAPIHandler: APIProtocol {
         guard let station = try await station(slug: input.path.stationSlug) else {
             return .notFound(notFound(code: "station_not_found", message: "Station '\(input.path.stationSlug)' does not exist."))
         }
-        return .ok(.init(body: .json(try station.transport())))
+        return .ok(.init(body: .json(try station.station())))
     }
 
     func getStationManifest(
@@ -36,12 +37,12 @@ struct DJSwiftAPIHandler: APIProtocol {
         }
 
         let cacheKey = RedisKey("\(redisNamespace):station:\(input.path.stationSlug):manifest")
-        if let cached = try await application.redis.get(cacheKey, asJSON: Components.Schemas.StationManifest.self) {
+        if let cached = try await application.redis.get(cacheKey, asJSON: StationManifest.self) {
             return .ok(.init(body: .json(cached)))
         }
 
         let generatedAt = Date()
-        let manifest = try Components.Schemas.StationManifest(
+        let manifest = try StationManifest(
             id: UUID().uuidString,
             stationId: station.requireID().uuidString,
             revision: 1,

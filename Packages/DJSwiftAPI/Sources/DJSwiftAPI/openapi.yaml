@@ -121,12 +121,15 @@ components:
       oneOf:
         - $ref: "#/components/schemas/TrackReference"
         - $ref: "#/components/schemas/AudioAssetReference"
+    PlaybackProvider:
+      type: string
+      enum: [appleMusic, spotify]
     TrackReference:
       type: object
       required: [kind, provider, catalogId]
       properties:
         kind: { type: string, enum: [track] }
-        provider: { type: string, enum: [appleMusic, spotify] }
+        provider: { $ref: "#/components/schemas/PlaybackProvider" }
         catalogId: { type: string }
         market: { type: string }
     AudioAssetReference:
@@ -136,6 +139,42 @@ components:
         kind: { type: string, enum: [audioAsset] }
         assetId: { type: string, format: uuid }
         mediaUrl: { type: string, format: uri }
+    Program:
+      type: object
+      required: [id, stationId, name, summary]
+      properties:
+        id: { type: string, format: uuid }
+        stationId: { type: string, format: uuid }
+        name: { type: string }
+        summary: { type: string }
+    Weekday:
+      type: integer
+      enum: [1, 2, 3, 4, 5, 6, 7]
+      description: Calendar weekday where Sunday is 1 and Saturday is 7.
+    ScheduleRule:
+      type: object
+      required: [id, programId, timeZoneIdentifier, weekdays, startMinuteOfDay, durationMinutes, priority]
+      properties:
+        id: { type: string, format: uuid }
+        programId: { type: string, format: uuid }
+        timeZoneIdentifier:
+          type: string
+          description: IANA time zone identifier, such as America/New_York.
+        weekdays:
+          type: array
+          uniqueItems: true
+          minItems: 1
+          items: { $ref: "#/components/schemas/Weekday" }
+        startMinuteOfDay:
+          type: integer
+          minimum: 0
+          maximum: 1439
+        durationMinutes:
+          type: integer
+          minimum: 1
+        priority:
+          type: integer
+          default: 0
     APIError:
       type: object
       required: [code, message]

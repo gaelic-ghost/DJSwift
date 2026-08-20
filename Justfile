@@ -7,7 +7,7 @@ align:
   sh .socket/managed/align.sh
 
 package-test:
-  for manifest in Packages/*/Package.swift; do (cd "$(dirname "$manifest")" && swift test); done
+  for manifest in Packages/*/Package.swift; do package_dir="$(dirname "$manifest")"; if find "$package_dir/Tests" -type f -name '*.swift' -print -quit 2>/dev/null | grep -q .; then (cd "$package_dir" && swift test); else (cd "$package_dir" && swift build); fi; done
 
 server-test:
   sh scripts/test-server.sh

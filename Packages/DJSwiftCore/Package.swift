@@ -8,10 +8,28 @@ let package = Package(
         .library(name: "DJSwiftDomain", targets: ["DJSwiftDomain"]),
         .library(name: "DJSwiftUI", targets: ["DJSwiftUI"]),
     ],
+    dependencies: [
+        .package(path: "../DJSwiftAPI"),
+    ],
     targets: [
-        .target(name: "DJSwiftDomain"),
-        .target(name: "DJSwiftUI", dependencies: ["DJSwiftDomain"]),
-        .testTarget(name: "DJSwiftDomainTests", dependencies: ["DJSwiftDomain"]),
+        .target(
+            name: "DJSwiftDomain",
+            dependencies: [
+                .product(name: "DJSwiftAPI", package: "DJSwiftAPI"),
+            ]
+        ),
+        .target(
+            name: "DJSwiftUI",
+            dependencies: [
+                .target(name: "DJSwiftDomain"),
+            ]
+        ),
+        .testTarget(
+            name: "DJSwiftDomainTests",
+            dependencies: [
+                .target(name: "DJSwiftDomain"),
+            ]
+        ),
     ],
     swiftLanguageModes: [.v6]
 )

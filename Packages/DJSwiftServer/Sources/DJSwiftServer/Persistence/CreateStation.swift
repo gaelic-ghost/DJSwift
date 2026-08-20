@@ -14,7 +14,7 @@ struct CreateStation: AsyncMigration {
 
         let station = Station.gaelicGhostOne
         try await StationRecord(
-            id: station.id,
+            id: Station.gaelicGhostOneID,
             slug: station.slug,
             name: station.name,
             tagline: station.tagline

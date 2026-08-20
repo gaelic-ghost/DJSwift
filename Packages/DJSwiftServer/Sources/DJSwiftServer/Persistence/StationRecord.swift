@@ -1,4 +1,3 @@
-import DJSwiftAPI
 import DJSwiftDomain
 import Fluent
 import Foundation
@@ -30,11 +29,7 @@ final class StationRecord: Model, @unchecked Sendable {
         self.tagline = tagline
     }
 
-    func domain() throws -> DJSwiftDomain.Station {
-        try Station(id: requireID(), slug: slug, name: name, tagline: tagline)
-    }
-
-    func transport() throws -> Components.Schemas.Station {
+    func station() throws -> Station {
         try .init(id: requireID().uuidString, slug: slug, name: name, tagline: tagline)
     }
 }
