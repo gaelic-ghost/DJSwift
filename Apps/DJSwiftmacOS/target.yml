@@ -1,0 +1,54 @@
+targets:
+  DJSwiftmacOS:
+    templates: [SwiftUIApp]
+    platform: macOS
+    deploymentTarget: "27.0"
+    sources:
+      - path: Apps/DJSwiftmacOS/Sources
+        type: syncedFolder
+      - path: Apps/DJSwiftmacOS/Resources
+        type: syncedFolder
+        optional: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.galewilliams.DJSwift.macOS
+        DEVELOPMENT_TEAM: BC73766F69
+    configFiles:
+      Debug: Apps/DJSwiftmacOS/Configurations/Debug.xcconfig
+      Staging: Apps/DJSwiftmacOS/Configurations/Staging.xcconfig
+      Release: Apps/DJSwiftmacOS/Configurations/Release.xcconfig
+      AppStore: Apps/DJSwiftmacOS/Configurations/AppStore.xcconfig
+      DirectDistribution: Apps/DJSwiftmacOS/Configurations/DirectDistribution.xcconfig
+      AltStore: Apps/DJSwiftmacOS/Configurations/AltStore.xcconfig
+    dependencies:
+      - package: DJSwiftCore
+        product: DJSwiftUI
+      - package: DJSwiftClient
+        product: DJSwiftClient
+  DJSwiftmacOSTests:
+    templates: [SwiftTesting]
+    platform: macOS
+    deploymentTarget: "27.0"
+    sources: [Apps/DJSwiftmacOSTests/Sources]
+    dependencies: [{ target: DJSwiftmacOS }]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.galewilliams.DJSwift.macOS.tests
+        DEVELOPMENT_TEAM: BC73766F69
+schemes:
+  DJSwiftmacOS:
+    templates: [AppScheme]
+    build: { targets: { DJSwiftmacOS: all } }
+    test:
+      targets:
+        - name: DJSwiftmacOSTests
+          parallelizable: true
+  DJSwiftmacOS Staging:
+    build: { targets: { DJSwiftmacOS: all } }
+    archive: { config: Staging }
+  DJSwiftmacOS App Store:
+    build: { targets: { DJSwiftmacOS: all } }
+    archive: { config: AppStore }
+  DJSwiftmacOS Direct Distribution:
+    build: { targets: { DJSwiftmacOS: all } }
+    archive: { config: DirectDistribution }

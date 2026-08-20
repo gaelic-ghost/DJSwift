@@ -1,0 +1,74 @@
+targets:
+  DJSwiftiOS:
+    templates: [SwiftUIApp]
+    platform: iOS
+    deploymentTarget: "27.0"
+    sources:
+      - path: Apps/DJSwiftiOS/Sources
+        type: syncedFolder
+      - path: Apps/DJSwiftiOS/Resources
+        type: syncedFolder
+        optional: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.galewilliams.DJSwift.iOS
+        DEVELOPMENT_TEAM: BC73766F69
+        TARGETED_DEVICE_FAMILY: "1,2"
+    configFiles:
+      Debug: Apps/DJSwiftiOS/Configurations/Debug.xcconfig
+      Staging: Apps/DJSwiftiOS/Configurations/Staging.xcconfig
+      Release: Apps/DJSwiftiOS/Configurations/Release.xcconfig
+      AppStore: Apps/DJSwiftiOS/Configurations/AppStore.xcconfig
+      DirectDistribution: Apps/DJSwiftiOS/Configurations/DirectDistribution.xcconfig
+      AltStore: Apps/DJSwiftiOS/Configurations/AltStore.xcconfig
+    dependencies:
+      - package: DJSwiftCore
+        product: DJSwiftUI
+      - package: DJSwiftClient
+        product: DJSwiftClient
+  DJSwiftiOSTests:
+    templates: [SwiftTesting]
+    platform: iOS
+    deploymentTarget: "27.0"
+    sources: [Apps/DJSwiftiOSTests/Sources]
+    dependencies: [{ target: DJSwiftiOS }]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.galewilliams.DJSwift.iOS.tests
+        DEVELOPMENT_TEAM: BC73766F69
+  DJSwiftiOSUITests:
+    templates: [SwiftUIAutomation]
+    platform: iOS
+    deploymentTarget: "27.0"
+    sources: [Apps/DJSwiftiOSUITests/Sources]
+    dependencies: [{ target: DJSwiftiOS }]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.galewilliams.DJSwift.iOS.uitests
+        DEVELOPMENT_TEAM: BC73766F69
+schemes:
+  DJSwiftiOS:
+    templates: [AppScheme]
+    build: { targets: { DJSwiftiOS: all } }
+    test:
+      targets:
+        - name: DJSwiftiOSTests
+          parallelizable: true
+  DJSwiftiOS All Tests:
+    build: { targets: { DJSwiftiOS: all } }
+    test:
+      config: Debug
+      targets:
+        - name: DJSwiftiOSTests
+          parallelizable: true
+        - name: DJSwiftiOSUITests
+          parallelizable: true
+  DJSwiftiOS Staging:
+    build: { targets: { DJSwiftiOS: all } }
+    archive: { config: Staging }
+  DJSwiftiOS App Store:
+    build: { targets: { DJSwiftiOS: all } }
+    archive: { config: AppStore }
+  DJSwiftiOS AltStore:
+    build: { targets: { DJSwiftiOS: all } }
+    archive: { config: AltStore }

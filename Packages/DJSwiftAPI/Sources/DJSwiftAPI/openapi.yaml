@@ -1,0 +1,116 @@
+openapi: 3.1.0
+info:
+  title: DJSwift API
+  version: 0.1.0
+  description: Contract for DJSwift health, station metadata, and station manifests.
+servers:
+  - url: http://127.0.0.1:8080
+    description: Local development server
+paths:
+  /health:
+    get:
+      operationId: getHealth
+      responses:
+        "200":
+          description: The service is alive.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+  /api/v1/stations:
+    get:
+      operationId: listStations
+      responses:
+        "200":
+          description: All available stations.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StationList"
+  /api/v1/stations/{stationId}:
+    parameters:
+      - $ref: "#/components/parameters/StationID"
+    get:
+      operationId: getStation
+      responses:
+        "200":
+          description: The requested station.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Station"
+        "404":
+          $ref: "#/components/responses/NotFound"
+  /api/v1/stations/{stationId}/manifest:
+    parameters:
+      - $ref: "#/components/parameters/StationID"
+    get:
+      operationId: getStationManifest
+      responses:
+        "200":
+          description: The current playable station manifest.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StationManifest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+components:
+  parameters:
+    StationID:
+      name: stationId
+      in: path
+      required: true
+      description: Stable station slug.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/APIError"
+  schemas:
+    Health:
+      type: object
+      required: [status, service]
+      properties:
+        status: { type: string }
+        service: { type: string }
+    Station:
+      type: object
+      required: [id, name, tagline]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        tagline: { type: string }
+    StationList:
+      type: object
+      required: [stations]
+      properties:
+        stations:
+          type: array
+          items: { $ref: "#/components/schemas/Station" }
+    StationManifest:
+      type: object
+      required: [stationId, revision, items]
+      properties:
+        stationId: { type: string }
+        revision: { type: integer, format: int64 }
+        items:
+          type: array
+          items: { $ref: "#/components/schemas/ManifestItem" }
+    ManifestItem:
+      type: object
+      required: [id, title, mediaUrl]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        mediaUrl: { type: string, format: uri }
+    APIError:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string }
+        message: { type: string }

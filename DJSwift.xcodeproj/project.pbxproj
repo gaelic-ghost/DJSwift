@@ -1,0 +1,1595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 90;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0EC1BC9968A82B9DC4CD8744 /* DJSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 18C074B449C1155443B06CC9 /* DJSwiftUI */; };
+		354816C1760B25184E93F402 /* DJSwiftClient in Frameworks */ = {isa = PBXBuildFile; productRef = 778DAF14E7D93776F274C74D /* DJSwiftClient */; };
+		9561A9418583913F86A0326B /* DJSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = D44A4B8F4FD371FD5121E2FB /* DJSwiftUI */; };
+		9EA2522840397B93720D6F88 /* DJSwiftClient in Frameworks */ = {isa = PBXBuildFile; productRef = FAE3B4691A003E8CE17E80C0 /* DJSwiftClient */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8DCB73A49587128529A77071 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 260EDA87E72B14DAF0F88E67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D44DC51623DECC9C91FBE366;
+			remoteInfo = DJSwiftiOS;
+		};
+		9DBB31D62B64C0D834C89F8D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 260EDA87E72B14DAF0F88E67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D44DC51623DECC9C91FBE366;
+			remoteInfo = DJSwiftiOS;
+		};
+		E63964E6BAB7DAD5EF7C69D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 260EDA87E72B14DAF0F88E67 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 083FE644FB6B86CA8B0C2738;
+			remoteInfo = DJSwiftmacOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A4FBA16A96C65BA55B1A860 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		3B4DD794F064F3431DB02704 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		3F3E928BE146B1A1EC6A25F1 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		44A395CD2B0B886DA313A774 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		48F7BE9C496AA31AA316B126 /* DJSwiftiOSUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DJSwiftiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		58B8909E36952E2D6EBF3FF2 /* AltStore.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AltStore.xcconfig; sourceTree = "<group>"; };
+		656DD3932D7E0EBD5457C5E0 /* DJSwiftiOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DJSwiftiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6CFAFA46F5C435F337455EF3 /* DJSwiftCore */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DJSwiftCore; path = Packages/DJSwiftCore; sourceTree = SOURCE_ROOT; };
+		7B7FF59E1A6D2427601D4872 /* DirectDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DirectDistribution.xcconfig; sourceTree = "<group>"; };
+		892BB7EE4C655867FBCFD839 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		A2FBAE0515B069EA74894A70 /* AltStore.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AltStore.xcconfig; sourceTree = "<group>"; };
+		A9F56E177497D1DF167960E4 /* AppStore.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppStore.xcconfig; sourceTree = "<group>"; };
+		B3BD3D27AF784986AC942AF7 /* DJSwiftmacOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DJSwiftmacOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C035C43E87545D7BCCB99212 /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		C30FF89F9E126BB988C7C802 /* DJSwiftiOSTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = DJSwiftiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5C64B9B01545C99B083DD1C /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
+		CB3FEDCBF1FEF1AAAD791681 /* DirectDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DirectDistribution.xcconfig; sourceTree = "<group>"; };
+		CD5F68B89DD61B5266F8B139 /* AppStore.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppStore.xcconfig; sourceTree = "<group>"; };
+		CF22D8CE416F06D21C354505 /* AppStore.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppStore.xcconfig; sourceTree = "<group>"; };
+		D1BF31B26726F3D3B4B6AC4D /* DJSwiftmacOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJSwiftmacOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3E0CBD4455A7A2785CA0CE3 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		D6F2F5D15B91B4B0AA2334A9 /* DJSwiftClient */ = {isa = PBXFileReference; lastKnownFileType = folder; name = DJSwiftClient; path = Packages/DJSwiftClient; sourceTree = SOURCE_ROOT; };
+		D8ED0DB0CE4B97132BC67772 /* AltStore.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AltStore.xcconfig; sourceTree = "<group>"; };
+		EC9DDC5F0168603A615BF5C9 /* DirectDistribution.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DirectDistribution.xcconfig; sourceTree = "<group>"; };
+		EDCCCB27FC96CD480C8C2CD7 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		01A356C0C33686733F1D8F6A /* Apps/DJSwiftiOSUITests/Sources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps/DJSwiftiOSUITests/Sources;
+			sourceTree = "<group>";
+		};
+		0719C9A6BBCE53F967583013 /* Apps/DJSwiftiOS/Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps/DJSwiftiOS/Resources;
+			sourceTree = "<group>";
+		};
+		125B637946A2BB8A58FE66CA /* Configurations */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		3E3F02508D233FFA991D7DF1 /* Apps/DJSwiftmacOSTests/Sources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps/DJSwiftmacOSTests/Sources;
+			sourceTree = "<group>";
+		};
+		48C35E73787F21F2CD16D80A /* scripts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
+		753F212CBF1D08AA99DB5BD9 /* Apps */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		8CDE371C7ED6FBA00866E38C /* docs */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = docs;
+			sourceTree = "<group>";
+		};
+		AD3BEDD0B25EC9A3F0ED0E5D /* Apps/DJSwiftmacOS/Sources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps/DJSwiftmacOS/Sources;
+			sourceTree = "<group>";
+		};
+		B61066F75CDCB5AB6BAEDA58 /* Packages */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		D029E54C6BB414C6EB0E3811 /* Apps/DJSwiftiOS/Sources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps/DJSwiftiOS/Sources;
+			sourceTree = "<group>";
+		};
+		E14519F0279CD390469522FD /* Apps/DJSwiftmacOS/Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps/DJSwiftmacOS/Resources;
+			sourceTree = "<group>";
+		};
+		F1520C3767DE8C025DB17D14 /* Apps/DJSwiftiOSTests/Sources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Apps/DJSwiftiOSTests/Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		69877B755868C5C54524AF39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9561A9418583913F86A0326B /* DJSwiftUI in Frameworks */,
+				354816C1760B25184E93F402 /* DJSwiftClient in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D74E635163959BF69FC4BAE0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0EC1BC9968A82B9DC4CD8744 /* DJSwiftUI in Frameworks */,
+				9EA2522840397B93720D6F88 /* DJSwiftClient in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		263B2DB7BDE16088C7626F0B /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				58B8909E36952E2D6EBF3FF2 /* AltStore.xcconfig */,
+				CF22D8CE416F06D21C354505 /* AppStore.xcconfig */,
+				3F3E928BE146B1A1EC6A25F1 /* Debug.xcconfig */,
+				EC9DDC5F0168603A615BF5C9 /* DirectDistribution.xcconfig */,
+				D3E0CBD4455A7A2785CA0CE3 /* Release.xcconfig */,
+				C035C43E87545D7BCCB99212 /* Staging.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		3A97D905797B63F91855C50F = {
+			isa = PBXGroup;
+			children = (
+				753F212CBF1D08AA99DB5BD9 /* Apps */,
+				0719C9A6BBCE53F967583013 /* Apps/DJSwiftiOS/Resources */,
+				D029E54C6BB414C6EB0E3811 /* Apps/DJSwiftiOS/Sources */,
+				F1520C3767DE8C025DB17D14 /* Apps/DJSwiftiOSTests/Sources */,
+				01A356C0C33686733F1D8F6A /* Apps/DJSwiftiOSUITests/Sources */,
+				E14519F0279CD390469522FD /* Apps/DJSwiftmacOS/Resources */,
+				AD3BEDD0B25EC9A3F0ED0E5D /* Apps/DJSwiftmacOS/Sources */,
+				3E3F02508D233FFA991D7DF1 /* Apps/DJSwiftmacOSTests/Sources */,
+				125B637946A2BB8A58FE66CA /* Configurations */,
+				263B2DB7BDE16088C7626F0B /* Configurations */,
+				C748FFA82C1B7B725B0888C0 /* Configurations */,
+				7731491555A833CC8704B965 /* Configurations */,
+				8CDE371C7ED6FBA00866E38C /* docs */,
+				B61066F75CDCB5AB6BAEDA58 /* Packages */,
+				6B79B2F4062243936AD53670 /* Packages */,
+				48C35E73787F21F2CD16D80A /* scripts */,
+				3B8B4B434666BD0794932F19 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3B8B4B434666BD0794932F19 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				656DD3932D7E0EBD5457C5E0 /* DJSwiftiOS.app */,
+				C30FF89F9E126BB988C7C802 /* DJSwiftiOSTests.xctest */,
+				48F7BE9C496AA31AA316B126 /* DJSwiftiOSUITests.xctest */,
+				D1BF31B26726F3D3B4B6AC4D /* DJSwiftmacOS.app */,
+				B3BD3D27AF784986AC942AF7 /* DJSwiftmacOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6B79B2F4062243936AD53670 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D6F2F5D15B91B4B0AA2334A9 /* DJSwiftClient */,
+				6CFAFA46F5C435F337455EF3 /* DJSwiftCore */,
+			);
+			path = Packages;
+			sourceTree = "<group>";
+		};
+		7731491555A833CC8704B965 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				D8ED0DB0CE4B97132BC67772 /* AltStore.xcconfig */,
+				A9F56E177497D1DF167960E4 /* AppStore.xcconfig */,
+				EDCCCB27FC96CD480C8C2CD7 /* Debug.xcconfig */,
+				7B7FF59E1A6D2427601D4872 /* DirectDistribution.xcconfig */,
+				892BB7EE4C655867FBCFD839 /* Release.xcconfig */,
+				1A4FBA16A96C65BA55B1A860 /* Staging.xcconfig */,
+			);
+			name = Configurations;
+			path = Apps/DJSwiftmacOS/Configurations;
+			sourceTree = "<group>";
+		};
+		C748FFA82C1B7B725B0888C0 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				A2FBAE0515B069EA74894A70 /* AltStore.xcconfig */,
+				CD5F68B89DD61B5266F8B139 /* AppStore.xcconfig */,
+				44A395CD2B0B886DA313A774 /* Debug.xcconfig */,
+				CB3FEDCBF1FEF1AAAD791681 /* DirectDistribution.xcconfig */,
+				3B4DD794F064F3431DB02704 /* Release.xcconfig */,
+				C5C64B9B01545C99B083DD1C /* Staging.xcconfig */,
+			);
+			name = Configurations;
+			path = Apps/DJSwiftiOS/Configurations;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		083FE644FB6B86CA8B0C2738 /* DJSwiftmacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75C851CE9106EBE85231DEB3 /* Build configuration list for PBXNativeTarget "DJSwiftmacOS" */;
+			buildPhases = (
+				3E99BC679D7AB42D389204A6 /* Sources */,
+				FC97A44351AB178F727ADB71 /* Resources */,
+				D74E635163959BF69FC4BAE0 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E14519F0279CD390469522FD /* Apps/DJSwiftmacOS/Resources */,
+				AD3BEDD0B25EC9A3F0ED0E5D /* Apps/DJSwiftmacOS/Sources */,
+			);
+			name = DJSwiftmacOS;
+			packageProductDependencies = (
+				18C074B449C1155443B06CC9 /* DJSwiftUI */,
+				FAE3B4691A003E8CE17E80C0 /* DJSwiftClient */,
+			);
+			productName = DJSwiftmacOS;
+			productReference = D1BF31B26726F3D3B4B6AC4D /* DJSwiftmacOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5D329346BD8317FFBDAA0EE7 /* DJSwiftiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 93E39735936A97ECE22EBBD3 /* Build configuration list for PBXNativeTarget "DJSwiftiOSTests" */;
+			buildPhases = (
+				0E0324E3063EFC641E94E28A /* Sources */,
+				331130A1D4E0DC38F5A27EDE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6A2F9AA88080482168DE8623 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F1520C3767DE8C025DB17D14 /* Apps/DJSwiftiOSTests/Sources */,
+			);
+			name = DJSwiftiOSTests;
+			packageProductDependencies = (
+			);
+			productName = DJSwiftiOSTests;
+			productReference = C30FF89F9E126BB988C7C802 /* DJSwiftiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		99C5576F4C215F36D32C1921 /* DJSwiftmacOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0E31EE5864082E946A0929B3 /* Build configuration list for PBXNativeTarget "DJSwiftmacOSTests" */;
+			buildPhases = (
+				A4C5640D6B62BB2EE8489F29 /* Sources */,
+				8890D483670ABB6D10F20AF5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0D52350CA14B8BEF3E1A35C3 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				3E3F02508D233FFA991D7DF1 /* Apps/DJSwiftmacOSTests/Sources */,
+			);
+			name = DJSwiftmacOSTests;
+			packageProductDependencies = (
+			);
+			productName = DJSwiftmacOSTests;
+			productReference = B3BD3D27AF784986AC942AF7 /* DJSwiftmacOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9D6D47DA2E2BC4645B091D1A /* DJSwiftiOSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAB420D10C3592EFBD8DF253 /* Build configuration list for PBXNativeTarget "DJSwiftiOSUITests" */;
+			buildPhases = (
+				36AA55807A4FF1C822B7E6D7 /* Sources */,
+				353EBC56D0794EA57571829F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DC489439B7D4B2040A05FD12 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				01A356C0C33686733F1D8F6A /* Apps/DJSwiftiOSUITests/Sources */,
+			);
+			name = DJSwiftiOSUITests;
+			packageProductDependencies = (
+			);
+			productName = DJSwiftiOSUITests;
+			productReference = 48F7BE9C496AA31AA316B126 /* DJSwiftiOSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		D44DC51623DECC9C91FBE366 /* DJSwiftiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5FDEA6873D1CD473344CC136 /* Build configuration list for PBXNativeTarget "DJSwiftiOS" */;
+			buildPhases = (
+				29ED4F2C7F058D3888B8DA5D /* Sources */,
+				84A2FCD2702BA83ADB3C7DC7 /* Resources */,
+				69877B755868C5C54524AF39 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				0719C9A6BBCE53F967583013 /* Apps/DJSwiftiOS/Resources */,
+				D029E54C6BB414C6EB0E3811 /* Apps/DJSwiftiOS/Sources */,
+			);
+			name = DJSwiftiOS;
+			packageProductDependencies = (
+				D44A4B8F4FD371FD5121E2FB /* DJSwiftUI */,
+				778DAF14E7D93776F274C74D /* DJSwiftClient */,
+			);
+			productName = DJSwiftiOS;
+			productReference = 656DD3932D7E0EBD5457C5E0 /* DJSwiftiOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		260EDA87E72B14DAF0F88E67 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					083FE644FB6B86CA8B0C2738 = {
+						DevelopmentTeam = BC73766F69;
+						ProvisioningStyle = Automatic;
+					};
+					5D329346BD8317FFBDAA0EE7 = {
+						DevelopmentTeam = BC73766F69;
+					};
+					99C5576F4C215F36D32C1921 = {
+						DevelopmentTeam = BC73766F69;
+					};
+					9D6D47DA2E2BC4645B091D1A = {
+						DevelopmentTeam = BC73766F69;
+						TestTargetID = D44DC51623DECC9C91FBE366;
+					};
+					D44DC51623DECC9C91FBE366 = {
+						DevelopmentTeam = BC73766F69;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 9AA64EDF17B21124294AA852 /* Build configuration list for PBXProject "DJSwift" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 3A97D905797B63F91855C50F;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2F395A2EB24D76245425CFEA /* XCLocalSwiftPackageReference "Packages/DJSwiftClient" */,
+				004A4FE89B4F39450423AE2A /* XCLocalSwiftPackageReference "Packages/DJSwiftCore" */,
+			);
+			preferredProjectObjectVersion = 90;
+			productRefGroup = 3B8B4B434666BD0794932F19 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D44DC51623DECC9C91FBE366 /* DJSwiftiOS */,
+				5D329346BD8317FFBDAA0EE7 /* DJSwiftiOSTests */,
+				9D6D47DA2E2BC4645B091D1A /* DJSwiftiOSUITests */,
+				083FE644FB6B86CA8B0C2738 /* DJSwiftmacOS */,
+				99C5576F4C215F36D32C1921 /* DJSwiftmacOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		331130A1D4E0DC38F5A27EDE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		353EBC56D0794EA57571829F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84A2FCD2702BA83ADB3C7DC7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8890D483670ABB6D10F20AF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FC97A44351AB178F727ADB71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0E0324E3063EFC641E94E28A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		29ED4F2C7F058D3888B8DA5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		36AA55807A4FF1C822B7E6D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E99BC679D7AB42D389204A6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A4C5640D6B62BB2EE8489F29 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0D52350CA14B8BEF3E1A35C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 083FE644FB6B86CA8B0C2738 /* DJSwiftmacOS */;
+			targetProxy = E63964E6BAB7DAD5EF7C69D8 /* PBXContainerItemProxy */;
+		};
+		6A2F9AA88080482168DE8623 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D44DC51623DECC9C91FBE366 /* DJSwiftiOS */;
+			targetProxy = 8DCB73A49587128529A77071 /* PBXContainerItemProxy */;
+		};
+		DC489439B7D4B2040A05FD12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D44DC51623DECC9C91FBE366 /* DJSwiftiOS */;
+			targetProxy = 9DBB31D62B64C0D834C89F8D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		06F8B31ECF1DC0432AA68ABB /* AltStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2FBAE0515B069EA74894A70 /* AltStore.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AltStore;
+		};
+		11AD480DD4C239BAEA8B6585 /* AltStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS.tests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftmacOS.app/Contents/MacOS/DJSwiftmacOS";
+			};
+			name = AltStore;
+		};
+		2092C86A51EAC6256AD69916 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJSwiftiOS;
+			};
+			name = Release;
+		};
+		2C2C3A2688AF3BC94EF5EAFC /* DirectDistribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B7FF59E1A6D2427601D4872 /* DirectDistribution.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+			};
+			name = DirectDistribution;
+		};
+		2CE84A5330111E52BC52A390 /* AltStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftiOS.app/DJSwiftiOS";
+			};
+			name = AltStore;
+		};
+		32050FA80865913FF7594336 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJSwiftiOS;
+			};
+			name = Debug;
+		};
+		42AF12AE8C27899944BEDDB7 /* DirectDistribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC9DDC5F0168603A615BF5C9 /* DirectDistribution.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = DirectDistribution;
+		};
+		44DF91233DDCDB9832D5A3F0 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJSwiftiOS;
+			};
+			name = AppStore;
+		};
+		4D32338DE97858C0CF438631 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDCCCB27FC96CD480C8C2CD7 /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+			};
+			name = Debug;
+		};
+		50ADE0E00F08C41DA7F63970 /* DirectDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftiOS.app/DJSwiftiOS";
+			};
+			name = DirectDistribution;
+		};
+		51E49DFF906D699263F47E56 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftiOS.app/DJSwiftiOS";
+			};
+			name = AppStore;
+		};
+		523BA6113DF145ED984C611C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3E0CBD4455A7A2785CA0CE3 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		58D91140E6DEC383398437B2 /* AltStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8ED0DB0CE4B97132BC67772 /* AltStore.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+			};
+			name = AltStore;
+		};
+		5C6B3863D6D98CEBE2027166 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS.tests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftmacOS.app/Contents/MacOS/DJSwiftmacOS";
+			};
+			name = Release;
+		};
+		71D9EE8DCDF353D97B86AEAC /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftiOS.app/DJSwiftiOS";
+			};
+			name = Staging;
+		};
+		74FA38AF7A505038F582B202 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5C64B9B01545C99B083DD1C /* Staging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		7785B2B46384049566759485 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C035C43E87545D7BCCB99212 /* Staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Staging;
+		};
+		7E5A6B2BFA7848A719A3E529 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftiOS.app/DJSwiftiOS";
+			};
+			name = Debug;
+		};
+		7EBB82F4C2705C3443382381 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9F56E177497D1DF167960E4 /* AppStore.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+			};
+			name = AppStore;
+		};
+		7EE67B929166725AE160856E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B4DD794F064F3431DB02704 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		86EBDC5C87729072C9DEE92E /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A4FBA16A96C65BA55B1A860 /* Staging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+			};
+			name = Staging;
+		};
+		8C5FD4D737547E6BFE0749B9 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD5F68B89DD61B5266F8B139 /* AppStore.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AppStore;
+		};
+		902FA588799B90400C678454 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.tests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftiOS.app/DJSwiftiOS";
+			};
+			name = Release;
+		};
+		95964529B8D7DC5FBAB6A436 /* AltStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58B8909E36952E2D6EBF3FF2 /* AltStore.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = AltStore;
+		};
+		9D65EED69B2D14C8C085FD37 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJSwiftiOS;
+			};
+			name = Staging;
+		};
+		9FDE914E6A05C19EC0321F1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 892BB7EE4C655867FBCFD839 /* Release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+			};
+			name = Release;
+		};
+		A965F89D9220E03A98F464CE /* DirectDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJSwiftiOS;
+			};
+			name = DirectDistribution;
+		};
+		AA61756C7A80D5E7AEAD7AC0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44A395CD2B0B886DA313A774 /* Debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B7EC7035DBD47EABCE632777 /* DirectDistribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS.tests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftmacOS.app/Contents/MacOS/DJSwiftmacOS";
+			};
+			name = DirectDistribution;
+		};
+		BB3686A6ED82F7C60CF2B0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F3E928BE146B1A1EC6A25F1 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C06326D8CE0F54BB4DC5984B /* DirectDistribution */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB3FEDCBF1FEF1AAAD791681 /* DirectDistribution.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = DirectDistribution;
+		};
+		E8E83D3BBCF22704294D870F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS.tests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftmacOS.app/Contents/MacOS/DJSwiftmacOS";
+			};
+			name = Debug;
+		};
+		E8FB9C85AE8783BE68D878A4 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF22D8CE416F06D21C354505 /* AppStore.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = AppStore;
+		};
+		EBF575215D7C6A83A4FBCC32 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS.tests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftmacOS.app/Contents/MacOS/DJSwiftmacOS";
+			};
+			name = AppStore;
+		};
+		EFEBB5ACB0A20D2415A7AD89 /* AltStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DJSwiftiOS;
+			};
+			name = AltStore;
+		};
+		F7B0A25EC534147CDE69AD56 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = BC73766F69;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.macOS.tests;
+				SDKROOT = macosx;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DJSwiftmacOS.app/Contents/MacOS/DJSwiftmacOS";
+			};
+			name = Staging;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0E31EE5864082E946A0929B3 /* Build configuration list for PBXNativeTarget "DJSwiftmacOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				11AD480DD4C239BAEA8B6585 /* AltStore */,
+				EBF575215D7C6A83A4FBCC32 /* AppStore */,
+				E8E83D3BBCF22704294D870F /* Debug */,
+				B7EC7035DBD47EABCE632777 /* DirectDistribution */,
+				5C6B3863D6D98CEBE2027166 /* Release */,
+				F7B0A25EC534147CDE69AD56 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		5FDEA6873D1CD473344CC136 /* Build configuration list for PBXNativeTarget "DJSwiftiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				06F8B31ECF1DC0432AA68ABB /* AltStore */,
+				8C5FD4D737547E6BFE0749B9 /* AppStore */,
+				AA61756C7A80D5E7AEAD7AC0 /* Debug */,
+				C06326D8CE0F54BB4DC5984B /* DirectDistribution */,
+				7EE67B929166725AE160856E /* Release */,
+				74FA38AF7A505038F582B202 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		75C851CE9106EBE85231DEB3 /* Build configuration list for PBXNativeTarget "DJSwiftmacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58D91140E6DEC383398437B2 /* AltStore */,
+				7EBB82F4C2705C3443382381 /* AppStore */,
+				4D32338DE97858C0CF438631 /* Debug */,
+				2C2C3A2688AF3BC94EF5EAFC /* DirectDistribution */,
+				9FDE914E6A05C19EC0321F1A /* Release */,
+				86EBDC5C87729072C9DEE92E /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		93E39735936A97ECE22EBBD3 /* Build configuration list for PBXNativeTarget "DJSwiftiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CE84A5330111E52BC52A390 /* AltStore */,
+				51E49DFF906D699263F47E56 /* AppStore */,
+				7E5A6B2BFA7848A719A3E529 /* Debug */,
+				50ADE0E00F08C41DA7F63970 /* DirectDistribution */,
+				902FA588799B90400C678454 /* Release */,
+				71D9EE8DCDF353D97B86AEAC /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		9AA64EDF17B21124294AA852 /* Build configuration list for PBXProject "DJSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95964529B8D7DC5FBAB6A436 /* AltStore */,
+				E8FB9C85AE8783BE68D878A4 /* AppStore */,
+				BB3686A6ED82F7C60CF2B0A7 /* Debug */,
+				42AF12AE8C27899944BEDDB7 /* DirectDistribution */,
+				523BA6113DF145ED984C611C /* Release */,
+				7785B2B46384049566759485 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		CAB420D10C3592EFBD8DF253 /* Build configuration list for PBXNativeTarget "DJSwiftiOSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EFEBB5ACB0A20D2415A7AD89 /* AltStore */,
+				44DF91233DDCDB9832D5A3F0 /* AppStore */,
+				32050FA80865913FF7594336 /* Debug */,
+				A965F89D9220E03A98F464CE /* DirectDistribution */,
+				2092C86A51EAC6256AD69916 /* Release */,
+				9D65EED69B2D14C8C085FD37 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		004A4FE89B4F39450423AE2A /* XCLocalSwiftPackageReference "Packages/DJSwiftCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/DJSwiftCore;
+		};
+		2F395A2EB24D76245425CFEA /* XCLocalSwiftPackageReference "Packages/DJSwiftClient" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/DJSwiftClient;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		18C074B449C1155443B06CC9 /* DJSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DJSwiftUI;
+		};
+		778DAF14E7D93776F274C74D /* DJSwiftClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DJSwiftClient;
+		};
+		D44A4B8F4FD371FD5121E2FB /* DJSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DJSwiftUI;
+		};
+		FAE3B4691A003E8CE17E80C0 /* DJSwiftClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DJSwiftClient;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 260EDA87E72B14DAF0F88E67 /* Project object */;
+}

@@ -1,0 +1,2 @@
+#include "../../Apps-shared.xcconfig"
+#include "../../../Configurations/DirectDistribution.xcconfig"

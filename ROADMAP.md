@@ -4,9 +4,9 @@ This roadmap records the decided repository architecture, modernization sequence
 
 ## Status
 
-- Current phase: repository modernization preparation.
-- Current product baseline: a shared SwiftUI bootstrap for iOS and macOS plus a Vapor 4 service with health, station-list, Leaf, Fluent/PostgreSQL, and generated Todo sample behavior.
-- Modernization strategy: preserve this repository and its Git history while replacing the bootstrap layout with the canonical root Xcode workspace shape.
+- Current phase: Phases 1–5 implemented and validated locally; Phase 6 cloud/container deployment is next.
+- Current product baseline: separate iOS and macOS apps, shared Swift packages, a generated OpenAPI contract, and a Vapor 4 service backed by PostgreSQL and Redis with an isolated Soto S3 boundary.
+- Modernization strategy: this repository and its Git history were preserved while the noncanonical nested projects were replaced with the canonical root Xcode workspace shape.
 - First deployment target: a low-cost, explicitly non-high-availability live-test environment after local behavior is proven.
 
 ## Locked Decisions
@@ -121,7 +121,7 @@ DJSwift/
   Deployment/
     Dockerfile
     compose.yaml
-  Scripts/
+  scripts/
   docs/
   AGENTS.md
   CONTRIBUTING.md
@@ -139,64 +139,66 @@ The final generated bootstrap may add required canonical support files or test t
 - [x] Record those decisions in this roadmap and reconcile the product plan.
 - [x] Land the current `build/add-test-action` branch on `main`.
 - [x] Create `architecture/workspace-modernization` from the updated `main`.
-- [ ] Record baseline app generation, server build, and server test results before moving files.
+- [x] Record baseline app generation, server build, and server test results before moving files.
+
+Baseline evidence: the legacy XcodeGen project generated and listed successfully, the legacy Vapor package built, and its Docker-backed server suite passed all four tests before migration.
 
 Exit condition: all pre-modernization history is reachable from `main`, the working tree is clean, and baseline failures are documented rather than silently carried forward.
 
 ### Phase 1: Install The Canonical Workspace
 
-- [ ] Generate a fresh DJSwift bootstrap in a temporary empty directory using the current workspace workflow.
-- [ ] Bring the root workspace, XcodeGen graph, configuration hierarchy, target fragments, package registry, Justfile, contributor documentation, and managed guidance into this repository.
-- [ ] Move the iOS and macOS application entry points and resources under their target directories.
-- [ ] Add the generated native unit and UI test surfaces.
-- [ ] Remove the obsolete nested `App/` project after equivalent source and configuration are proven in the root workspace.
-- [ ] Regenerate the root project and verify that generated project data matches its specifications.
+- [x] Generate a fresh DJSwift bootstrap in a temporary empty directory using the current workspace workflow.
+- [x] Bring the root workspace, XcodeGen graph, configuration hierarchy, target fragments, package registry, Justfile, contributor documentation, and managed guidance into this repository.
+- [x] Move the iOS and macOS application entry points and resources under their target directories.
+- [x] Add the generated native unit and UI test surfaces.
+- [x] Remove the obsolete nested `App/` project after equivalent source and configuration are proven in the root workspace.
+- [x] Regenerate the root project and verify that generated project data matches its specifications.
 
 Exit condition: `DJSwift.xcworkspace` is the only supported Apple-product entry point, and both native targets resolve from generated root project data.
 
 ### Phase 2: Establish The Package Graph
 
-- [ ] Create `DJSwiftCore`, `DJSwiftAPI`, `DJSwiftClient`, and `DJSwiftServer` package manifests and initial products.
-- [ ] Move shared station bootstrap types into their correct domain/client owner.
-- [ ] Move the Vapor executable into `Packages/DJSwiftServer` without changing externally visible routes.
-- [ ] Separate executable entry from testable application construction.
-- [ ] Adopt Swift 6 language mode and remove redundant upcoming-feature flags after compilation verifies they are no longer needed.
-- [ ] Register only consumed package products in the relevant XcodeGen targets.
-- [ ] Ensure the root Docker build context can resolve every local package dependency.
+- [x] Create `DJSwiftCore`, `DJSwiftAPI`, `DJSwiftClient`, and `DJSwiftServer` package manifests and initial products.
+- [x] Move shared station bootstrap types into their correct domain/client owner.
+- [x] Move the Vapor executable into `Packages/DJSwiftServer` while preserving health and station behavior through the generated contract.
+- [x] Separate executable entry from testable application construction.
+- [x] Adopt Swift 6 language mode and remove redundant upcoming-feature flags after compilation verifies they are no longer needed.
+- [x] Register only consumed package products in the relevant XcodeGen targets.
+- [x] Reserve the repository root as the Phase 6 Docker build context so every sibling local package will be resolvable.
 
 Exit condition: dependencies flow toward core abstractions without cycles, both apps compile against deliberate package products, and the server builds and tests through SwiftPM.
 
 ### Phase 3: Define The API Contract
 
-- [ ] Add the first canonical OpenAPI document for health, station listing, station detail, and current manifest operations.
-- [ ] Configure generated client and Vapor server transport types.
-- [ ] Add explicit API-to-domain and domain-to-API mappings.
-- [ ] Replace handwritten duplicated station response shapes at the transport boundary.
-- [ ] Add contract and request/response tests.
+- [x] Add the first canonical OpenAPI document for health, station listing, station detail, and current manifest operations.
+- [x] Configure generated client and Vapor server transport types.
+- [x] Add explicit API-to-domain and domain-to-API mappings.
+- [x] Replace handwritten duplicated station response shapes at the transport boundary.
+- [x] Add contract and request/response tests.
 
 Exit condition: iOS, macOS, and Vapor consume one checked-in API contract without sharing persistence or SwiftUI types.
 
 ### Phase 4: Modernize Persistence And Redis
 
-- [ ] Add safe `.env` and `.env.example` conventions around `DATABASE_URL` and `REDIS_URL`.
-- [ ] Add idempotent setup commands for the local development and test databases.
-- [ ] Replace the generated Todo model, migration, controller, and tests with the first real Station persistence slice.
-- [ ] Add Redis configuration and a narrow first use such as station-manifest caching only when its invalidation behavior is specified.
-- [ ] Add Redis-backed queues when asset processing, generated audio, email, or another real background job requires them.
-- [ ] Isolate test database schema and Redis keys from development data.
+- [x] Add safe `.env` and `.env.example` conventions around `DATABASE_URL` and `REDIS_URL`.
+- [x] Add idempotent setup commands for the local development and test databases.
+- [x] Replace the generated Todo model, migration, controller, and tests with the first real Station persistence slice.
+- [x] Add Redis configuration and station-manifest caching with a 60-second TTL.
+- [x] Defer Redis-backed queues until asset processing, generated audio, email, or another real background job requires them.
+- [x] Isolate test database schema and Redis keys from development data.
 
 Exit condition: a clean checkout can use the documented Homebrew services to migrate, test, run, and exercise one real station API slice without Docker.
 
 ### Phase 5: Introduce Soto At A Concrete Boundary
 
-- [ ] Choose the first AWS-backed capability, expected to be S3 object storage for station artwork or non-music audio assets.
-- [ ] Add only the corresponding Soto product.
-- [ ] Define a narrow application protocol around the required storage behavior.
-- [ ] Verify local temporary credentials and error reporting without persisting credentials.
-- [ ] Record the exact AWS API calls and resource ARNs required by the deployed implementation.
-- [ ] Generate and validate the least-privilege application task policy from the implemented calls.
+- [x] Choose S3 object storage for station artwork and non-music audio assets as the first AWS-backed capability.
+- [x] Add only the `SotoS3` product.
+- [x] Define a narrow `AssetStorage` application protocol around object writes.
+- [x] Verify fail-closed configuration and actionable error reporting without persisting credentials or making a call as the root principal.
+- [x] Record the exact `s3:PutObject` call and deployment-time resource ARN template required by the implementation.
+- [x] Generate the least-privilege application policy template; defer Access Analyzer validation until the concrete Phase 6 bucket and temporary non-root identity exist.
 
-Exit condition: one AWS capability works through Soto, remains replaceable in tests, and has a documented least-privilege permission surface.
+Exit condition: the S3 capability compiles through Soto, remains replaceable in tests, fails closed when disabled or partly configured, and has a documented least-privilege permission surface. A live S3 call is a Phase 6 preflight because the only current CLI session is the account root principal.
 
 ### Phase 6: Container And Live-Test Deployment
 
@@ -226,6 +228,7 @@ Exit condition: production has least-privilege temporary credentials, managed du
 Read-only checks performed on 2026-08-20 against the currently configured AWS CLI session in `us-east-2` found:
 
 - AWS CLI and an authenticated session are available.
+- The current CLI session resolves through STS as the AWS account root principal. It must not be used for DJSwift provisioning or normal administration.
 - Root-account MFA is enabled.
 - No root access keys are present.
 - No local IAM Identity Center/SSO profile or discoverable Identity Center instance is configured.
@@ -235,13 +238,25 @@ Read-only checks performed on 2026-08-20 against the currently configured AWS CL
 These findings do not block repository modernization or local development. Before creating the first persistent AWS environment:
 
 - [ ] Confirm the intended AWS account and region strategy.
-- [ ] Configure IAM Identity Center for human access with temporary credentials, unless an existing organization-level identity provider owns that responsibility.
+- [ ] Configure IAM Identity Center for human access with temporary credentials, unless an existing organization-level identity provider owns that responsibility, and retire the current root-authenticated CLI path from normal use.
 - [ ] Enable and review an account- or organization-level IAM Access Analyzer.
 - [ ] Determine whether Security Hub is disabled or merely hidden from the current identity, then enable it in the deployment regions if it belongs in the account security baseline.
 - [ ] Confirm CloudTrail, budgets, billing alerts, and cost anomaly detection.
 - [ ] Create deployment roles only with the infrastructure that consumes them.
 
 No DJSwift IAM role is required up front. The first role decision belongs to the first AWS deployment or Soto-backed feature, when concrete resources and permissions exist.
+
+## Modernization Validation
+
+Validation completed on 2026-08-20 with the configured stable Xcode 26.6 and local Homebrew services:
+
+- The root XcodeGen graph generated successfully, and `xcodebuild -list` resolved the root workspace and its app/package schemes.
+- The iOS and macOS app targets built with code signing disabled and package-plugin validation skipped for noninteractive validation.
+- Both app builds correctly retained the locked iOS 27 and macOS 27 deployment targets; Xcode 26.6 emitted the expected warning because its selected SDK reports support through 26.5.99.
+- `DJSwiftCore`, `DJSwiftAPI`, and `DJSwiftClient` each passed their SwiftPM tests.
+- `DJSwiftServer` migrated `djswift_development`, created the bootstrap station, and passed all four PostgreSQL/Redis integration tests against isolated test state.
+- Swift OpenAPI Generator successfully generated types, client, and server code from the checked-in contract.
+- Soto S3 configuration and lifecycle code compiled without making an AWS request under the unsafe root-authenticated CLI session.
 
 ## Risks And Controls
 
@@ -268,3 +283,7 @@ No DJSwift IAM role is required up front. The first role decision belongs to the
 ### 2026-08-20: Canonical Workspace And Deployment Direction
 
 DJSwift will migrate in place to the current root Xcode workspace bootstrap, place Apple targets under `Apps/`, place the Vapor executable and shared modules under `Packages/`, use Vapor 4 with PostgreSQL and Redis, use Soto for application AWS access, develop against Homebrew services, validate with Docker Compose, deploy the first live test to a small Lightsail Compose host, and prefer ECS/Fargate over Swarm or premature EKS for production scaling.
+
+### 2026-08-20: Local Modernization Through The AWS Boundary
+
+Phases 1–5 are implemented locally. S3 object writes are the first Soto capability and are isolated behind `AssetStorage`; live credential and policy validation moves to the Phase 6 preflight so no application work is performed with the account root principal. Docker and AWS provisioning remain intentionally outside this milestone.

@@ -1,0 +1,5 @@
+packages:
+  DJSwiftCore:
+    path: Packages/DJSwiftCore
+  DJSwiftClient:
+    path: Packages/DJSwiftClient

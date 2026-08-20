@@ -1,7 +1,0 @@
-#include "Debug.xcconfig"
-
-IPHONEOS_DEPLOYMENT_TARGET = 27.0
-PRODUCT_BUNDLE_IDENTIFIER = com.galewilliams.DJSwift.iOS
-INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen
-INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
-INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight

@@ -6,7 +6,9 @@
 
 # Xcode
 DerivedData/
+Build/
 *.xcuserdata/
+xcuserdata/
 *.xcuserstate
 *.xcodeproj/project.xcworkspace/xcuserdata/
 *.xcodeproj/xcuserdata/
@@ -17,4 +19,4 @@ DerivedData/
 !.env.example
 
 # Vapor
-Server/.vapor/
+Packages/DJSwiftServer/.vapor/

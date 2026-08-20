@@ -1,0 +1,40 @@
+name: DJSwift
+include:
+  - path: Apps/apps-shared.yml
+    relativePaths: false
+  - path: Packages/packages-shared.yml
+    relativePaths: false
+  - path: Apps/DJSwiftiOS/target.yml
+    relativePaths: false
+  - path: Apps/DJSwiftmacOS/target.yml
+    relativePaths: false
+options:
+  minimumXcodeGenVersion: 2.46.0
+  projectFormat: xcode16_3
+  defaultConfig: Debug
+  defaultSourceDirectoryType: syncedFolder
+  schemePathPrefix: ../
+  localPackagesGroup: Packages
+  deploymentTarget:
+    iOS: "27.0"
+    macOS: "27.0"
+configs:
+  Debug: debug
+  Staging: release
+  Release: release
+  AppStore: release
+  DirectDistribution: release
+  AltStore: release
+configFiles:
+  Debug: Configurations/Debug.xcconfig
+  Staging: Configurations/Staging.xcconfig
+  Release: Configurations/Release.xcconfig
+  AppStore: Configurations/AppStore.xcconfig
+  DirectDistribution: Configurations/DirectDistribution.xcconfig
+  AltStore: Configurations/AltStore.xcconfig
+fileGroups:
+  - Apps
+  - Packages
+  - Configurations
+  - scripts
+  - docs
