@@ -8,6 +8,9 @@ COMPOSE_PROJECT_NAME="${COMPOSE_PROJECT_NAME:-djswift-test}"
 DB_SERVICE="db"
 DB_NAME="${DATABASE_NAME:-vapor_database}"
 DB_USERNAME="${DATABASE_USERNAME:-vapor_username}"
+DB_PASSWORD="${DATABASE_PASSWORD:-vapor_password}"
+DB_HOST="${DATABASE_HOST:-127.0.0.1}"
+DB_PORT="${DJ_SWIFT_TEST_DB_PORT:-55432}"
 
 if ! command -v docker >/dev/null 2>&1; then
     echo "DJSwift server tests require Docker, but no docker executable was found on PATH." >&2
@@ -55,7 +58,7 @@ cleanup() {
     fi
 
     echo "Stopping the DJSwift test database container and removing its test volume."
-    if ! (cd "$SERVER_DIR" && COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" $COMPOSE down -v); then
+    if ! (cd "$SERVER_DIR" && DATABASE_HOST_PORT="$DB_PORT" COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" $COMPOSE down -v); then
         echo "Docker Compose cleanup failed for the DJSwift test database; inspect Docker state with: docker ps -a" >&2
     fi
 }
@@ -69,13 +72,13 @@ finish() {
 
 trap finish EXIT INT TERM
 
-echo "Starting the DJSwift test database with Docker Compose project '$COMPOSE_PROJECT_NAME'."
-(cd "$SERVER_DIR" && COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" $COMPOSE up -d "$DB_SERVICE")
+echo "Starting the DJSwift test database with Docker Compose project '$COMPOSE_PROJECT_NAME' on $DB_HOST:$DB_PORT."
+(cd "$SERVER_DIR" && DATABASE_HOST_PORT="$DB_PORT" COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" $COMPOSE up -d "$DB_SERVICE")
 
 echo "Waiting for PostgreSQL to accept connections."
 attempt=1
 while [ "$attempt" -le 30 ]; do
-    if (cd "$SERVER_DIR" && COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" $COMPOSE exec -T "$DB_SERVICE" pg_isready -U "$DB_USERNAME" -d "$DB_NAME" >/dev/null 2>&1); then
+    if (cd "$SERVER_DIR" && DATABASE_HOST_PORT="$DB_PORT" COMPOSE_PROJECT_NAME="$COMPOSE_PROJECT_NAME" $COMPOSE exec -T "$DB_SERVICE" pg_isready -U "$DB_USERNAME" -d "$DB_NAME" >/dev/null 2>&1); then
         echo "PostgreSQL is ready for DJSwift server tests."
         break
     fi
@@ -91,4 +94,10 @@ while [ "$attempt" -le 30 ]; do
 done
 
 echo "Running DJSwift server tests."
-(cd "$SERVER_DIR" && swift test)
+(cd "$SERVER_DIR" && \
+    DATABASE_HOST="$DB_HOST" \
+    DATABASE_PORT="$DB_PORT" \
+    DATABASE_NAME="$DB_NAME" \
+    DATABASE_USERNAME="$DB_USERNAME" \
+    DATABASE_PASSWORD="$DB_PASSWORD" \
+    swift test)

@@ -1,5 +1,7 @@
 # DJSwift Project Plan
 
+Implementation sequencing and locked architecture/deployment decisions live in [`../ROADMAP.md`](../ROADMAP.md). This document owns product intent, feature boundaries, and the longer product milestone plan.
+
 ## Product Shape
 
 DJSwift is a smart internet radio service for Apple-platform listeners and station creators. The first version is a curated app with a small number of Gale-owned stations. Later versions add paid user-created stations, shareable listening links, agent-assisted station building, generated radio elements, and personalized station suggestions.
@@ -19,39 +21,41 @@ The app targets macOS 27+ and iOS 27+ so the client can take advantage of new Ap
 
 ### Repository Layout
 
-Proposed first repo shape:
+Decided repository shape after the workspace modernization:
 
 ```text
 DJSwift/
-  App/
-    DJSwiftApp/                 # SwiftUI app for iOS and macOS
-    DJSwiftClient/              # Generated OpenAPI client plus app-facing wrappers
-    DJSwiftPlayback/            # MusicKit and Spotify playback adapters
-    DJSwiftRecording/           # Voice-track recording and import workflow
-  Server/
-    DJSwiftServer/              # Vapor or Hummingbird server executable
-    DJSwiftDomain/              # Station, schedule, manifest, and policy logic
-    DJSwiftPersistence/         # Fluent models, migrations, and repositories
-    DJSwiftWeb/                 # Leaf or other homepage rendering if using Vapor
-  Shared/
-    DJSwiftTypes/               # Hand-authored domain value types shared where useful
-    DJSwiftOpenAPI/             # openapi.yaml and generator config
+  DJSwift.xcworkspace/          # Stable root Xcode entry point
+  DJSwift.xcodeproj/            # Generated from root XcodeGen specifications
+  project.yml
+  Configurations/
+  Apps/
+    DJSwiftiOS/                 # iOS app target, resources, and configuration
+    DJSwiftiOSTests/
+    DJSwiftiOSUITests/
+    DJSwiftmacOS/               # macOS app target, resources, and configuration
+    DJSwiftmacOSTests/
+  Packages/
+    DJSwiftCore/                # Portable station, schedule, manifest, and policy logic
+    DJSwiftAPI/                 # OpenAPI contract and generated transport types
+    DJSwiftClient/              # App-facing services and transport/domain mapping
+    DJSwiftServer/              # Vapor executable, persistence, Redis, Soto, and tests
+  Deployment/                   # Root-context container and Compose surfaces
   docs/
     PROJECT_PLAN.md
-    ARCHITECTURE.md
     DATA_MODEL.md
-    ROADMAP.md
+  ROADMAP.md
 ```
 
-This can start smaller, but the boundaries should be preserved early: playback, station domain logic, persistence, API transport, and generated client code should not be mixed into one app or server target.
+The repository keeps one root workspace and generated Xcode project. Apple application bundles live under `Apps/`; the Vapor executable remains a Swift package under `Packages/`, not an Apple app target. Playback, station domain logic, persistence, API transport, and generated client code remain explicit boundaries.
 
-### Server Framework Direction
+### Server Framework Decision
 
-Vapor is the conservative first choice if the near-term server includes Fluent, PostgreSQL, authentication, and a Leaf-powered homepage. It gives the shortest path to app API plus web presence.
+Vapor 4 is the selected stable server framework. Fluent, PostgreSQL, authentication, Redis integration, and a Leaf-powered homepage give the shortest path to the native app API plus web presence.
 
-Hummingbird remains a strong option if the homepage is static or minimal and the project values a lighter server core. Hummingbird can integrate with Fluent through `hummingbird-fluent`, so choosing Hummingbird does not force abandoning Fluent, but Leaf and the broader Vapor ecosystem make Vapor simpler for the first public-facing service.
+Vapor 5 remains an evaluation track while it is prerelease. It will not replace the stable Vapor 4 baseline until its release, documentation, and required ecosystem compatibility are proven.
 
-Recommended decision: start with Vapor unless a first milestone proves the server should be mostly API-only and very lightweight.
+PostgreSQL is the durable database. Redis is the ephemeral cache/session and future queue backend. Application-level AWS calls use Soto rather than the AWS SDK for Swift, isolated inside the server package.
 
 ### API Contract
 
@@ -230,8 +234,6 @@ Later tier knobs:
 
 ## Open Questions
 
-- Is Vapor's homepage and Fluent-first convenience more valuable than Hummingbird's lighter server core for the first milestone?
-- Should `Shared/DJSwiftTypes` be a separate Swift package immediately, or should shared domain types live inside one Swift package workspace until cross-target pressure is real?
 - What is the minimum useful listen-along model: synchronized station schedule only, or shared session state with presence?
 - How much creator web UI is needed before the native Station Builder exists?
 - Which music provider should be mandatory for milestone 1?
@@ -245,7 +247,8 @@ Later tier knobs:
 
 - Verify OS 27 beta APIs for MusicKit, Music Understanding, Foundation Models, and WeatherKit.
 - Verify Spotify iOS and macOS playback options and policy constraints.
-- Choose Vapor or Hummingbird for the first server.
+- Complete the canonical root workspace and local package modernization described in `ROADMAP.md`.
+- Preserve stable Vapor 4 while evaluating Vapor 5 separately.
 - Draft `openapi.yaml` for stations, manifests, and assets.
 - Draft `DATA_MODEL.md` with entity definitions and relationships.
 
@@ -292,6 +295,10 @@ Later tier knobs:
 
 ## Technical Risks
 
+- Local database-backed tests must never migrate or revert the development database.
+- Redis must not become an undocumented durable source of truth.
+- A single-host Lightsail Compose deployment is intentionally non-HA and requires rehearsed PostgreSQL backup and restore.
+- AWS execution and application roles must remain separate and least-privilege; no long-lived credentials belong in DJSwift configuration.
 - Music-provider policy and SDK limits may shape the product more than the local architecture.
 - OS 27 APIs are future-facing and must be treated as beta-gated until verified against Xcode beta docs and actual build behavior.
 - Generated audio and custom voices carry consent, disclosure, storage, and revocation requirements.
@@ -313,4 +320,3 @@ Later tier knobs:
 - Spotify iOS SDK documentation: https://developer.spotify.com/documentation/ios
 - Spotify Web API documentation: https://developer.spotify.com/documentation/web-api
 - OpenAI Apps SDK documentation: https://developers.openai.com/apps-sdk
-
