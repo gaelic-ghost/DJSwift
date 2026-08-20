@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+
+global_hook="${XDG_CONFIG_HOME:-$HOME/.config}/git/hooks/prepare-commit-msg"
+[ -x "$global_hook" ] || exit 0
+exec "$global_hook" "$@"

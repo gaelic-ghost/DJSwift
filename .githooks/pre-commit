@@ -1,0 +1,42 @@
+#!/bin/sh
+set -eu
+
+repository_root=$(git rev-parse --show-toplevel)
+configuration="$repository_root/.swiftformat"
+
+if ! command -v swiftformat >/dev/null 2>&1; then
+    echo "DJSwift commit blocked: SwiftFormat is required but is not installed or not available on PATH." >&2
+    exit 1
+fi
+
+if [ ! -f "$configuration" ]; then
+    echo "DJSwift commit blocked: required SwiftFormat configuration is missing at $configuration." >&2
+    exit 1
+fi
+
+staged_paths=$(git diff --cached --name-only --diff-filter=ACMR -- '*.swift')
+[ -n "$staged_paths" ] || exit 0
+
+printf '%s\n' "$staged_paths" | while IFS= read -r path; do
+    [ -n "$path" ] || continue
+
+    original_blob=$(git rev-parse ":$path")
+    working_blob=$(git hash-object "$repository_root/$path")
+    mode=$(git ls-files --stage -- "$path" | awk 'NR == 1 { print $1 }')
+    formatted_blob=$(
+        git show ":$path" |
+            swiftformat stdin --stdinpath "$repository_root/$path" --config "$configuration" --cache ignore |
+            git hash-object -w --stdin
+    )
+
+    git update-index --cacheinfo "$mode" "$formatted_blob" "$path"
+
+    if [ "$working_blob" = "$original_blob" ]; then
+        git show ":$path" > "$repository_root/$path"
+    fi
+
+    git show ":$path" |
+        swiftformat stdin --lint --stdinpath "$repository_root/$path" --config "$configuration" --cache ignore >/dev/null
+done
+
+echo "SwiftFormat formatted and verified staged Swift sources."

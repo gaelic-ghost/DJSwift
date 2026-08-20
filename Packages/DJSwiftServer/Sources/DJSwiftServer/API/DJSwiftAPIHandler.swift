@@ -10,11 +10,11 @@ struct DJSwiftAPIHandler: APIProtocol {
     let redisNamespace: String
     let assetStorage: (any AssetStorage)?
 
-    func getHealth(_ input: Operations.GetHealth.Input) async throws -> Operations.GetHealth.Output {
+    func getHealth(_: Operations.GetHealth.Input) async throws -> Operations.GetHealth.Output {
         .ok(.init(body: .json(.init(status: "ok", service: "DJSwiftServer"))))
     }
 
-    func listStations(_ input: Operations.ListStations.Input) async throws -> Operations.ListStations.Output {
+    func listStations(_: Operations.ListStations.Input) async throws -> Operations.ListStations.Output {
         let stations = try await StationRecord.query(on: application.db)
             .sort(\.$name)
             .all()
@@ -26,11 +26,12 @@ struct DJSwiftAPIHandler: APIProtocol {
         guard let station = try await station(slug: input.path.stationSlug) else {
             return .notFound(notFound(code: "station_not_found", message: "Station '\(input.path.stationSlug)' does not exist."))
         }
-        return .ok(.init(body: .json(try station.station())))
+
+        return try .ok(.init(body: .json(station.station())))
     }
 
     func getStationManifest(
-        _ input: Operations.GetStationManifest.Input
+        _ input: Operations.GetStationManifest.Input,
     ) async throws -> Operations.GetStationManifest.Output {
         guard let station = try await station(slug: input.path.stationSlug) else {
             return .notFound(notFound(code: "station_not_found", message: "Station '\(input.path.stationSlug)' does not exist."))
@@ -49,7 +50,7 @@ struct DJSwiftAPIHandler: APIProtocol {
             generatedAt: generatedAt,
             validFrom: generatedAt,
             validThrough: generatedAt.addingTimeInterval(60 * 60),
-            items: []
+            items: [],
         )
         try await application.redis.setex(cacheKey, toJSON: manifest, expirationInSeconds: 60)
         return .ok(.init(body: .json(manifest)))

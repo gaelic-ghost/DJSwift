@@ -8,7 +8,7 @@ public struct DJSwiftServiceClient: Sendable {
     public init(serverURL: URL = URL(string: "http://127.0.0.1:8080")!) {
         transport = DJSwiftAPI.Client(
             serverURL: serverURL,
-            transport: URLSessionTransport()
+            transport: URLSessionTransport(),
         )
     }
 }

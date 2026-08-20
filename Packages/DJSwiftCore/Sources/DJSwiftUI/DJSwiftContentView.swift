@@ -33,8 +33,8 @@ public struct DJSwiftContentView: View {
                 LinearGradient(
                     colors: [.black, Color(red: 0.05, green: 0, blue: 0.12), Color(red: 0, green: 0.12, blue: 0.16)],
                     startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                ).ignoresSafeArea()
+                    endPoint: .bottomTrailing,
+                ).ignoresSafeArea(),
             )
             .navigationTitle("DJSwift")
         }

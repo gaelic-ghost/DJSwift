@@ -17,7 +17,7 @@ struct CreateStation: AsyncMigration {
             id: Station.gaelicGhostOneID,
             slug: station.slug,
             name: station.name,
-            tagline: station.tagline
+            tagline: station.tagline,
         ).create(on: database)
     }
 

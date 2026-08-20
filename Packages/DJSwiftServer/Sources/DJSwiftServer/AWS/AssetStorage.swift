@@ -16,7 +16,7 @@ struct S3AssetStorage: AssetStorage {
                 body: .init(bytes: data),
                 bucket: bucket,
                 contentType: contentType,
-                key: key
+                key: key,
             ))
         } catch {
             throw AssetStorageError.uploadFailed(bucket: bucket, key: key, underlying: error)
@@ -30,10 +30,10 @@ enum AssetStorageError: Error, CustomStringConvertible {
 
     var description: String {
         switch self {
-        case .incompleteConfiguration:
-            return "DJSwift S3 storage requires both AWS_REGION and AWS_S3_ASSET_BUCKET, or neither to disable it locally."
-        case let .uploadFailed(bucket, key, underlying):
-            return "DJSwift could not upload S3 object s3://\(bucket)/\(key): \(underlying)"
+            case .incompleteConfiguration:
+                "DJSwift S3 storage requires both AWS_REGION and AWS_S3_ASSET_BUCKET, or neither to disable it locally."
+            case let .uploadFailed(bucket, key, underlying):
+                "DJSwift could not upload S3 object s3://\(bucket)/\(key): \(underlying)"
         }
     }
 }

@@ -11,6 +11,6 @@ public extension Station {
         id: gaelicGhostOneID.uuidString,
         slug: "gaelic-ghost-one",
         name: "Gaelic Ghost One",
-        tagline: "Curated radio first. Creator-hosted stations next."
+        tagline: "Curated radio first. Creator-hosted stations next.",
     )
 }

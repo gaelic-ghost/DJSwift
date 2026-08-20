@@ -16,20 +16,20 @@ let package = Package(
             name: "DJSwiftDomain",
             dependencies: [
                 .product(name: "DJSwiftAPI", package: "DJSwiftAPI"),
-            ]
+            ],
         ),
         .target(
             name: "DJSwiftUI",
             dependencies: [
                 .target(name: "DJSwiftDomain"),
-            ]
+            ],
         ),
         .testTarget(
             name: "DJSwiftDomainTests",
             dependencies: [
                 .target(name: "DJSwiftDomain"),
-            ]
+            ],
         ),
     ],
-    swiftLanguageModes: [.v6]
+    swiftLanguageModes: [.v6],
 )

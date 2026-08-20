@@ -19,9 +19,9 @@ let package = Package(
             ],
             plugins: [
                 .plugin(name: "OpenAPIGenerator", package: "swift-openapi-generator"),
-            ]
+            ],
         ),
         .testTarget(name: "DJSwiftAPITests", dependencies: ["DJSwiftAPI"]),
     ],
-    swiftLanguageModes: [.v6]
+    swiftLanguageModes: [.v6],
 )

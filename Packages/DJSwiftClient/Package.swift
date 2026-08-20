@@ -17,8 +17,8 @@ let package = Package(
             dependencies: [
                 .product(name: "DJSwiftAPI", package: "DJSwiftAPI"),
                 .product(name: "OpenAPIURLSession", package: "swift-openapi-urlsession"),
-            ]
+            ],
         ),
     ],
-    swiftLanguageModes: [.v6]
+    swiftLanguageModes: [.v6],
 )

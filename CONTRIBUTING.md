@@ -2,13 +2,19 @@
 
 ## Setup
 
-Install XcodeGen, PostgreSQL 18, Redis, and Just with Homebrew, then run:
+Install XcodeGen, SwiftFormat, PostgreSQL 18, Redis, and Just with Homebrew, then run:
 
 ```sh
 just setup
 ```
 
-This verifies the Homebrew services, creates `djswift_development` and `djswift_test` idempotently, regenerates `DJSwift.xcodeproj`, and lists the root workspace.
+This installs the repository Git hooks, verifies the Homebrew services, creates `djswift_development` and `djswift_test` idempotently, regenerates `DJSwift.xcodeproj`, and lists the root workspace.
+
+## Formatting
+
+The root `.swiftformat` is exported from Gale's SwiftFormat for Xcode settings, and `.swift-version` locks its version-sensitive behavior to Swift 6.2. Run `just format` to format every tracked Swift file and `just format-check` to verify the tree.
+
+The required pre-commit hook formats staged Swift blobs and then reruns SwiftFormat in lint mode. It preserves unstaged changes and blocks commits when SwiftFormat or the repository configuration is unavailable. Run `just install-hooks` if the local hook path needs to be restored.
 
 ## Source of truth
 

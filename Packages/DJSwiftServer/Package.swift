@@ -29,15 +29,15 @@ let package = Package(
                 .product(name: "OpenAPIVapor", package: "swift-openapi-vapor"),
                 .product(name: "SotoS3", package: "soto"),
                 .product(name: "Vapor", package: "vapor"),
-            ]
+            ],
         ),
         .testTarget(
             name: "DJSwiftServerTests",
             dependencies: [
                 .target(name: "DJSwiftServer"),
                 .product(name: "VaporTesting", package: "vapor"),
-            ]
+            ],
         ),
     ],
-    swiftLanguageModes: [.v6]
+    swiftLanguageModes: [.v6],
 )

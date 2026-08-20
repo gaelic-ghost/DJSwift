@@ -1,6 +1,6 @@
-import Testing
 @testable import DJSwiftiOS
+import Testing
 
-@Test func appTargetLoads() {
+@Test func `app target loads`() {
     #expect(true)
 }
