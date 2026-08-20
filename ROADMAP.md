@@ -226,6 +226,7 @@ Exit condition: production has least-privilege temporary credentials, managed du
 Read-only checks performed on 2026-08-20 against the currently configured AWS CLI session in `us-east-2` found:
 
 - AWS CLI and an authenticated session are available.
+- The current CLI session resolves through STS as the AWS account root principal. It must not be used for DJSwift provisioning or normal administration.
 - Root-account MFA is enabled.
 - No root access keys are present.
 - No local IAM Identity Center/SSO profile or discoverable Identity Center instance is configured.
@@ -235,7 +236,7 @@ Read-only checks performed on 2026-08-20 against the currently configured AWS CL
 These findings do not block repository modernization or local development. Before creating the first persistent AWS environment:
 
 - [ ] Confirm the intended AWS account and region strategy.
-- [ ] Configure IAM Identity Center for human access with temporary credentials, unless an existing organization-level identity provider owns that responsibility.
+- [ ] Configure IAM Identity Center for human access with temporary credentials, unless an existing organization-level identity provider owns that responsibility, and retire the current root-authenticated CLI path from normal use.
 - [ ] Enable and review an account- or organization-level IAM Access Analyzer.
 - [ ] Determine whether Security Hub is disabled or merely hidden from the current identity, then enable it in the deployment regions if it belongs in the account security baseline.
 - [ ] Confirm CloudTrail, budgets, billing alerts, and cost anomaly detection.
