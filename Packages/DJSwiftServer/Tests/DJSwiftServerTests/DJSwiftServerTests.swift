@@ -1,5 +1,6 @@
 @testable import DJSwiftServer
 import DJSwiftAPI
+import DJSwiftDomain
 import Fluent
 import Foundation
 import Testing
@@ -40,6 +41,7 @@ struct DJSwiftServerTests {
     @Test func listsAndFindsPersistedStations() async throws {
         try await withApp { app in
             try await StationRecord(
+                id: Station.gaelicGhostOne.id,
                 slug: "gaelic-ghost-one",
                 name: "Gaelic Ghost One",
                 tagline: "Curated radio first."
@@ -48,7 +50,8 @@ struct DJSwiftServerTests {
             try await app.testing().test(.GET, "api/v1/stations") { response async throws in
                 #expect(response.status == .ok)
                 let body = try response.content.decode(Components.Schemas.StationList.self)
-                #expect(body.stations.map(\.id) == ["gaelic-ghost-one"])
+                #expect(body.stations.map(\.id) == [Station.gaelicGhostOne.id.uuidString])
+                #expect(body.stations.map(\.slug) == ["gaelic-ghost-one"])
             }
 
             try await app.testing().test(.GET, "api/v1/stations/gaelic-ghost-one") { response async throws in
@@ -62,6 +65,7 @@ struct DJSwiftServerTests {
     @Test func cachesManifestInsideTestNamespace() async throws {
         try await withApp { app in
             try await StationRecord(
+                id: Station.gaelicGhostOne.id,
                 slug: "gaelic-ghost-one",
                 name: "Gaelic Ghost One",
                 tagline: "Curated radio first."

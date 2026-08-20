@@ -15,11 +15,25 @@ public struct DJSwiftServiceClient: Sendable {
 }
 
 public extension Components.Schemas.Station {
-    var domain: DJSwiftDomain.Station {
-        Station(id: id, name: name, tagline: tagline)
+    func domain() throws -> DJSwiftDomain.Station {
+        guard let stationID = UUID(uuidString: id) else {
+            throw DJSwiftClientMappingError.invalidStationID(id)
+        }
+        return Station(id: stationID, slug: slug, name: name, tagline: tagline)
     }
 
     init(domain: DJSwiftDomain.Station) {
-        self.init(id: domain.id, name: domain.name, tagline: domain.tagline)
+        self.init(id: domain.id.uuidString, slug: domain.slug, name: domain.name, tagline: domain.tagline)
+    }
+}
+
+public enum DJSwiftClientMappingError: Error, CustomStringConvertible, Equatable {
+    case invalidStationID(String)
+
+    public var description: String {
+        switch self {
+        case let .invalidStationID(value):
+            "DJSwift received station id '\(value)', but the API contract requires a UUID string."
+        }
     }
 }

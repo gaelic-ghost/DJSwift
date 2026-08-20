@@ -1,3 +1,4 @@
+import DJSwiftDomain
 import Fluent
 
 struct CreateStation: AsyncMigration {
@@ -11,10 +12,12 @@ struct CreateStation: AsyncMigration {
             .unique(on: "slug")
             .create()
 
+        let station = Station.gaelicGhostOne
         try await StationRecord(
-            slug: "gaelic-ghost-one",
-            name: "Gaelic Ghost One",
-            tagline: "A bootstrap station placeholder for the first curated manifest."
+            id: station.id,
+            slug: station.slug,
+            name: station.name,
+            tagline: station.tagline
         ).create(on: database)
     }
 

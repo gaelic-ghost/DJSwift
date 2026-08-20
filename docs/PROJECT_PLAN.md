@@ -43,7 +43,7 @@ DJSwift/
   Deployment/                   # Root-context container and Compose surfaces
   docs/
     PROJECT_PLAN.md
-    DATA_MODEL.md
+    DATA_MODEL.md                   # Durable entities, relationships, and migration order
   ROADMAP.md
 ```
 
@@ -51,7 +51,7 @@ The repository keeps one root workspace and generated Xcode project. Apple appli
 
 ### Server Framework Decision
 
-Vapor 4 is the selected stable server framework. Fluent, PostgreSQL, authentication, Redis integration, and a Leaf-powered homepage give the shortest path to the native app API plus web presence.
+Vapor 4 is the selected stable server framework. Fluent, PostgreSQL, authentication, Redis integration, and Leaf give the shortest path to the native app API plus a server-rendered web presence. Leaf begins with the public homepage and may grow into the creator web application; it shares server application behavior rather than creating a second model layer.
 
 Vapor 5 remains an evaluation track while it is prerelease. It will not replace the stable Vapor 4 baseline until its release, documentation, and required ecosystem compatibility are proven.
 
@@ -63,7 +63,7 @@ Use Swift OpenAPI Generator as the app/server contract source.
 
 Contract ownership:
 
-- `Shared/DJSwiftOpenAPI/openapi.yaml` is the canonical API surface.
+- `Packages/DJSwiftAPI/Sources/DJSwiftAPI/openapi.yaml` is the canonical API surface.
 - Server routes are implemented against the same operation names and schemas.
 - App code uses generated client types behind small app-facing services.
 - Domain models map to API DTOs explicitly at API boundaries.
@@ -79,6 +79,10 @@ Early API groups:
 - `assets`: upload or register voice tracks, generated audio, show art, station art, and intro/outro beds.
 - `agent`: start a station-building session, propose schedule changes, explain a station plan, and commit approved edits.
 - `weather`: request station-weather insert copy or audio metadata for a location and time window.
+
+### Web Application
+
+Leaf is the decided server-rendered web foundation. The first surface is a public homepage and station directory. Account, creator, draft editing, and station-management pages can be added as product needs become concrete. Leaf view contexts remain presentation models over the same application/domain behavior used by the OpenAPI handlers; they do not access Fluent records as an alternate application architecture.
 
 ## Core Data Model
 
@@ -251,6 +255,8 @@ Later tier knobs:
 - Preserve stable Vapor 4 while evaluating Vapor 5 separately.
 - Draft `openapi.yaml` for stations, manifests, and assets.
 - Draft `DATA_MODEL.md` with entity definitions and relationships.
+
+Current status: the workspace modernization, initial station/manifest OpenAPI contract, and durable data-model foundation are complete. Music/provider and OS 27 framework research remain open before playback implementation.
 
 ### Milestone 1: Curated Station Prototype
 

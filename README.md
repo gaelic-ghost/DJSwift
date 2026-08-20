@@ -11,7 +11,7 @@ The first milestone is a curated station prototype:
 - `Packages/DJSwiftServer`: Vapor, Fluent/PostgreSQL, Redis, and Soto-backed server boundaries.
 - `docs/`: product, architecture, and planning notes.
 
-The supported Apple entry point is `DJSwift.xcworkspace`. The decided architecture, completed modernization work, and AWS deployment runway are recorded in [`ROADMAP.md`](ROADMAP.md). Product intent remains in [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md).
+The supported Apple entry point is `DJSwift.xcworkspace`. The decided architecture, completed modernization work, and AWS deployment runway are recorded in [`ROADMAP.md`](ROADMAP.md). Product intent lives in [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md), and durable entity relationships and migration order live in [`docs/DATA_MODEL.md`](docs/DATA_MODEL.md).
 
 ## Development
 

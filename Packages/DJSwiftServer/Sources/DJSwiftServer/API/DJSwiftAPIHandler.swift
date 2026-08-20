@@ -1,5 +1,6 @@
 import DJSwiftAPI
 import Fluent
+import Foundation
 import Redis
 import Vapor
 
@@ -16,32 +17,37 @@ struct DJSwiftAPIHandler: APIProtocol {
         let stations = try await StationRecord.query(on: application.db)
             .sort(\.$name)
             .all()
-            .map(\.transport)
+            .map { try $0.transport() }
         return .ok(.init(body: .json(.init(stations: stations))))
     }
 
     func getStation(_ input: Operations.GetStation.Input) async throws -> Operations.GetStation.Output {
-        guard let station = try await station(slug: input.path.stationId) else {
-            return .notFound(notFound(code: "station_not_found", message: "Station '\(input.path.stationId)' does not exist."))
+        guard let station = try await station(slug: input.path.stationSlug) else {
+            return .notFound(notFound(code: "station_not_found", message: "Station '\(input.path.stationSlug)' does not exist."))
         }
-        return .ok(.init(body: .json(station.transport)))
+        return .ok(.init(body: .json(try station.transport())))
     }
 
     func getStationManifest(
         _ input: Operations.GetStationManifest.Input
     ) async throws -> Operations.GetStationManifest.Output {
-        guard try await station(slug: input.path.stationId) != nil else {
-            return .notFound(notFound(code: "station_not_found", message: "Station '\(input.path.stationId)' does not exist."))
+        guard let station = try await station(slug: input.path.stationSlug) else {
+            return .notFound(notFound(code: "station_not_found", message: "Station '\(input.path.stationSlug)' does not exist."))
         }
 
-        let cacheKey = RedisKey("\(redisNamespace):station:\(input.path.stationId):manifest")
+        let cacheKey = RedisKey("\(redisNamespace):station:\(input.path.stationSlug):manifest")
         if let cached = try await application.redis.get(cacheKey, asJSON: Components.Schemas.StationManifest.self) {
             return .ok(.init(body: .json(cached)))
         }
 
-        let manifest = Components.Schemas.StationManifest(
-            stationId: input.path.stationId,
+        let generatedAt = Date()
+        let manifest = try Components.Schemas.StationManifest(
+            id: UUID().uuidString,
+            stationId: station.requireID().uuidString,
             revision: 1,
+            generatedAt: generatedAt,
+            validFrom: generatedAt,
+            validThrough: generatedAt.addingTimeInterval(60 * 60),
             items: []
         )
         try await application.redis.setex(cacheKey, toJSON: manifest, expirationInSeconds: 60)

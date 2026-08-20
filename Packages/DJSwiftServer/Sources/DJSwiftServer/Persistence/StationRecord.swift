@@ -30,11 +30,11 @@ final class StationRecord: Model, @unchecked Sendable {
         self.tagline = tagline
     }
 
-    var domain: DJSwiftDomain.Station {
-        Station(id: slug, name: name, tagline: tagline)
+    func domain() throws -> DJSwiftDomain.Station {
+        try Station(id: requireID(), slug: slug, name: name, tagline: tagline)
     }
 
-    var transport: Components.Schemas.Station {
-        .init(id: slug, name: name, tagline: tagline)
+    func transport() throws -> Components.Schemas.Station {
+        try .init(id: requireID().uuidString, slug: slug, name: name, tagline: tagline)
     }
 }

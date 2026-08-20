@@ -2,7 +2,7 @@ import DJSwiftDomain
 import SwiftUI
 
 public struct DJSwiftContentView: View {
-    private let station = Station.bootstrap
+    private let station = Station.gaelicGhostOne
 
     public init() {}
 

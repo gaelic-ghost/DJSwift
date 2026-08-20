@@ -200,9 +200,20 @@ Exit condition: a clean checkout can use the documented Homebrew services to mig
 
 Exit condition: the S3 capability compiles through Soto, remains replaceable in tests, fails closed when disabled or partly configured, and has a documented least-privilege permission surface. A live S3 call is a Phase 6 preflight because the only current CLI session is the account root principal.
 
+### Product Foundation Checkpoint
+
+- [x] Define durable entity ownership, relationships, lifecycle rules, and migration order in `docs/DATA_MODEL.md`.
+- [x] Separate UUID entity identity from public station slugs across domain, API, client, and server boundaries.
+- [x] Establish portable station, program, schedule-rule, manifest, track-reference, and audio-asset-reference domain types.
+- [x] Align the initial OpenAPI station and manifest projections with the durable model.
+- [x] Lock Leaf as the public homepage and eventual server-rendered web application without adding unused web infrastructure.
+- [x] Remove the generated sample route and remaining active pre-modernization assumptions.
+
+Exit condition: product vocabulary and implementation order are durable, current code compiles against the model skeleton, and unused future tables or application layers have not been fabricated.
+
 ### Phase 6: Container And Live-Test Deployment
 
-- [ ] Consolidate the current Dockerfile into the root-context production image.
+- [ ] Add a hardened root-context production Dockerfile.
 - [ ] Add Redis, health checks, private dependency networking, and safe local credentials to Compose.
 - [ ] Remove the live revert surface and host-published database/cache ports from deployment configuration.
 - [ ] Add a one-shot migration command and PostgreSQL backup/restore runbook.
@@ -254,7 +265,7 @@ Validation completed on 2026-08-20 with the configured stable Xcode 26.6 and loc
 - The iOS and macOS app targets built with code signing disabled and package-plugin validation skipped for noninteractive validation.
 - Both app builds correctly retained the locked iOS 27 and macOS 27 deployment targets; Xcode 26.6 emitted the expected warning because its selected SDK reports support through 26.5.99.
 - `DJSwiftCore`, `DJSwiftAPI`, and `DJSwiftClient` each passed their SwiftPM tests.
-- `DJSwiftServer` migrated `djswift_development`, created the bootstrap station, and passed all four PostgreSQL/Redis integration tests against isolated test state.
+- `DJSwiftServer` migrated `djswift_development`, created the initial curated station, and passed all four PostgreSQL/Redis integration tests against isolated test state.
 - Swift OpenAPI Generator successfully generated types, client, and server code from the checked-in contract.
 - Soto S3 configuration and lifecycle code compiled without making an AWS request under the unsafe root-authenticated CLI session.
 
@@ -272,11 +283,11 @@ Validation completed on 2026-08-20 with the configured stable Xcode 26.6 and loc
 ## Deferred Decisions And Triggers
 
 - First playback provider: decide during the contract and playback spike after current MusicKit and Spotify policy verification.
-- First Soto service: default candidate is S3, but add it only with the first implemented asset-storage use case.
+- Next Soto service: add another service product only when a concrete implemented capability requires it.
 - Redis versus a Redis-compatible managed production service: decide during production provisioning after Vapor integration and compatibility are verified.
 - ECS versus EKS: remain on ECS unless Kubernetes portability, existing Kubernetes operations, or multi-service scheduling requirements become concrete.
 - Package subdivision beyond the four named packages: split targets or packages only after compilation boundaries, dependency ownership, or test isolation demonstrate the need.
-- Creator web UI framework: decide when the native Station Builder no longer covers the required creator workflow.
+- Leaf web application scope: begin with the public homepage and expand into creator workflows when native-only management no longer covers the required use cases.
 
 ## Decision Log
 
@@ -287,3 +298,7 @@ DJSwift will migrate in place to the current root Xcode workspace bootstrap, pla
 ### 2026-08-20: Local Modernization Through The AWS Boundary
 
 Phases 1–5 are implemented locally. S3 object writes are the first Soto capability and are isolated behind `AssetStorage`; live credential and policy validation moves to the Phase 6 preflight so no application work is performed with the account root principal. Docker and AWS provisioning remain intentionally outside this milestone.
+
+### 2026-08-20: Data Model And Web Foundation
+
+DJSwift separates durable UUID identity from public station slugs, models programming intent separately from generated playback manifests, and distinguishes provider-hosted music from DJSwift-owned audio. Domain vocabulary is established before adding unused database tables. Leaf is the decided public homepage and eventual server-rendered web application, sharing server application behavior with the OpenAPI surface.

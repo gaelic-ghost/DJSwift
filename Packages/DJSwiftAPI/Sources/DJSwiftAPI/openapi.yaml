@@ -27,9 +27,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/StationList"
-  /api/v1/stations/{stationId}:
+  /api/v1/stations/{stationSlug}:
     parameters:
-      - $ref: "#/components/parameters/StationID"
+      - $ref: "#/components/parameters/StationSlug"
     get:
       operationId: getStation
       responses:
@@ -41,9 +41,9 @@ paths:
                 $ref: "#/components/schemas/Station"
         "404":
           $ref: "#/components/responses/NotFound"
-  /api/v1/stations/{stationId}/manifest:
+  /api/v1/stations/{stationSlug}/manifest:
     parameters:
-      - $ref: "#/components/parameters/StationID"
+      - $ref: "#/components/parameters/StationSlug"
     get:
       operationId: getStationManifest
       responses:
@@ -57,8 +57,8 @@ paths:
           $ref: "#/components/responses/NotFound"
 components:
   parameters:
-    StationID:
-      name: stationId
+    StationSlug:
+      name: stationSlug
       in: path
       required: true
       description: Stable station slug.
@@ -80,9 +80,12 @@ components:
         service: { type: string }
     Station:
       type: object
-      required: [id, name, tagline]
+      required: [id, slug, name, tagline]
       properties:
-        id: { type: string }
+        id: { type: string, format: uuid }
+        slug:
+          type: string
+          description: Stable public identifier used in station URLs.
         name: { type: string }
         tagline: { type: string }
     StationList:
@@ -94,19 +97,44 @@ components:
           items: { $ref: "#/components/schemas/Station" }
     StationManifest:
       type: object
-      required: [stationId, revision, items]
+      required: [id, stationId, revision, generatedAt, validFrom, validThrough, items]
       properties:
-        stationId: { type: string }
+        id: { type: string, format: uuid }
+        stationId: { type: string, format: uuid }
         revision: { type: integer, format: int64 }
+        generatedAt: { type: string, format: date-time }
+        validFrom: { type: string, format: date-time }
+        validThrough: { type: string, format: date-time }
         items:
           type: array
           items: { $ref: "#/components/schemas/ManifestItem" }
     ManifestItem:
       type: object
-      required: [id, title, mediaUrl]
+      required: [id, title, startsAt, source]
       properties:
-        id: { type: string }
+        id: { type: string, format: uuid }
         title: { type: string }
+        startsAt: { type: string, format: date-time }
+        durationSeconds: { type: integer }
+        source: { $ref: "#/components/schemas/ManifestSource" }
+    ManifestSource:
+      oneOf:
+        - $ref: "#/components/schemas/TrackReference"
+        - $ref: "#/components/schemas/AudioAssetReference"
+    TrackReference:
+      type: object
+      required: [kind, provider, catalogId]
+      properties:
+        kind: { type: string, enum: [track] }
+        provider: { type: string, enum: [appleMusic, spotify] }
+        catalogId: { type: string }
+        market: { type: string }
+    AudioAssetReference:
+      type: object
+      required: [kind, assetId, mediaUrl]
+      properties:
+        kind: { type: string, enum: [audioAsset] }
+        assetId: { type: string, format: uuid }
         mediaUrl: { type: string, format: uri }
     APIError:
       type: object
