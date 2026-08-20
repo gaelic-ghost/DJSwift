@@ -13,7 +13,7 @@ The app targets macOS 27+ and iOS 27+ so the client can take advantage of new Ap
 - Playback happens on the listener device through authorized first-party playback surfaces whenever possible.
 - The server owns station identity, schedules, programs, creator accounts, manifests, generated audio assets, and shareable station state.
 - The app owns user playback, MusicKit or Spotify authorization, local listening context, private recommendations, recording, and privacy-sensitive AI work when Apple frameworks make that viable.
-- The OpenAPI contract is the shared API boundary. Generated OpenAPI types should not become the persistence model, SwiftUI state model, or station engine internals by default.
+- The OpenAPI contract is the shared model and API boundary. Its generated Codable schema values are the canonical representation of every retained product data model across the domain facade, clients, Vapor, Redis, and Leaf; Fluent records remain persistence-specific.
 - Station-building features should start deterministic and inspectable before adding agents or generated content.
 - Generated audio and personalized recommendations must be explicit about source, consent, licensing, and whether processing happens on-device, in private cloud compute, on the DJSwift server, or through a third-party API.
 
@@ -36,9 +36,9 @@ DJSwift/
     DJSwiftmacOS/               # macOS app target, resources, and configuration
     DJSwiftmacOSTests/
   Packages/
-    DJSwiftCore/                # Portable station, schedule, manifest, and policy logic
-    DJSwiftAPI/                 # OpenAPI contract and generated transport types
-    DJSwiftClient/              # App-facing services and transport/domain mapping
+    DJSwiftCore/                # Domain aliases/behavior and shared SwiftUI
+    DJSwiftAPI/                 # OpenAPI contract and generated Codable/client/server types
+    DJSwiftClient/              # App-facing generated client facade
     DJSwiftServer/              # Vapor executable, persistence, Redis, Soto, and tests
   Deployment/                   # Root-context container and Compose surfaces
   docs/
@@ -64,10 +64,13 @@ Use Swift OpenAPI Generator as the app/server contract source.
 Contract ownership:
 
 - `Packages/DJSwiftAPI/Sources/DJSwiftAPI/openapi.yaml` is the canonical API surface.
+- Its `components.schemas` generate every retained product data model; no separate JSON Schema model files or generated Swift sources are checked in.
+- `DJSwiftDomain` exposes zero-storage aliases and ergonomic extensions over those generated schema values.
 - Server routes are implemented against the same operation names and schemas.
 - App code uses generated client types behind small app-facing services.
-- Domain models map to API DTOs explicitly at API boundaries.
-- Persistence models map to domain models explicitly at repository boundaries.
+- API-exposed values are not copied into parallel domain DTOs.
+- Persistence models map once to canonical shared values at repository boundaries; `StationRecord` is currently the only such model.
+- OpenAPI `date-time` properties generate as `Foundation.Date`; time-zone identifiers remain strings and duration fields remain integer intervals.
 
 Early API groups:
 
@@ -303,13 +306,13 @@ Current status: the workspace modernization, initial station/manifest OpenAPI co
 
 - Local database-backed tests must never migrate or revert the development database.
 - Redis must not become an undocumented durable source of truth.
-- A single-host Lightsail Compose deployment is intentionally non-HA and requires rehearsed PostgreSQL backup and restore.
+- A single-host EC2 Compose deployment is intentionally non-HA and requires an instance-profile application role plus rehearsed PostgreSQL backup and restore.
 - AWS execution and application roles must remain separate and least-privilege; no long-lived credentials belong in DJSwift configuration.
 - Music-provider policy and SDK limits may shape the product more than the local architecture.
 - OS 27 APIs are future-facing and must be treated as beta-gated until verified against Xcode beta docs and actual build behavior.
 - Generated audio and custom voices carry consent, disclosure, storage, and revocation requirements.
 - Shared listening with provider playback can drift unless manifests include timing, fallback, and provider availability rules.
-- Generated OpenAPI types can become too sticky if they leak into database and UI layers.
+- Parallel generated/domain DTOs can recreate mapping-only code; all retained product data uses one generated Codable representation exposed through `DJSwiftDomain` aliases, while persistence and presentation types require concrete lifecycle or formatting differences.
 - User-created public stations could become a moderation, rights, and abuse surface early.
 
 ## Research Sources Checked On 2026-06-23

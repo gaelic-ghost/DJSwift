@@ -4,7 +4,7 @@ This roadmap records the decided repository architecture, modernization sequence
 
 ## Status
 
-- Current phase: Phases 1–5 implemented and validated locally; Phase 6 cloud/container deployment is next.
+- Current phase: Phases 1–5, the product-foundation checkpoint, and the model-deduplication gate are implemented locally; Phase 6 cloud/container deployment is next.
 - Current product baseline: separate iOS and macOS apps, shared Swift packages, a generated OpenAPI contract, and a Vapor 4 service backed by PostgreSQL and Redis with an isolated Soto S3 boundary.
 - Modernization strategy: this repository and its Git history were preserved while the noncanonical nested projects were replaced with the canonical root Xcode workspace shape.
 - First deployment target: a low-cost, explicitly non-high-availability live-test environment after local behavior is proven.
@@ -27,12 +27,16 @@ The following choices are decided. Revisit one only when new evidence changes it
 
 ### Package Ownership
 
-- `DJSwiftCore` owns platform-neutral station, program, schedule, manifest, and policy types and behavior.
-- `DJSwiftAPI` owns the canonical OpenAPI document, generator configuration, and generated transport types.
-- `DJSwiftClient` owns app-facing API services and explicit transport-to-domain mappings.
+- `DJSwiftCore` owns the required `DJSwiftDomain` facade, its zero-storage aliases and behavior over generated values, and shared SwiftUI.
+- `DJSwiftAPI` owns the one checked-in `openapi.yaml`, generator configuration, and the single generated Codable representation of every retained product data model.
+- `DJSwiftClient` owns app-facing API services without recreating API data shapes solely to rename or relay them.
 - `DJSwiftServer` owns Vapor startup, HTTP adapters, Fluent persistence, Redis integration, Soto integration, migrations, and server tests.
-- Generated OpenAPI types are transport types. They do not become Fluent models, core domain models, or SwiftUI state models.
-- Fluent models are persistence types. They map explicitly at the persistence boundary when their stored shape differs from the domain shape.
+- Generated OpenAPI schema types are the canonical shared data models. `DJSwiftDomain` provides readable aliases and ergonomic extensions over those exact types; apps, Vapor handlers, Redis, and Leaf consume the same Codable values through that domain-facing module.
+- Do not declare a core-domain struct that copies an OpenAPI schema. A type alias preserves the domain module boundary without adding storage, encoding, conversion, or a second model.
+- OpenAPI `components.schemas` are part of `openapi.yaml`; the repository has no separate JSON Schema model files and does not check in generated Swift output.
+- Absolute instants use OpenAPI `format: date-time` and generate as `Foundation.Date`. Time-zone identifiers remain strings, and durations remain integer intervals.
+- Fluent models remain persistence types when database identity, property wrappers, relations, timestamps, or lifecycle differ. Each record maps once to the canonical shared model rather than separately to parallel domain and transport copies.
+- Leaf contexts compose canonical models with presentation-only data such as navigation, formatted strings, form state, and errors. They do not repeat complete station, manifest, or media schemas.
 - Soto and server credentials never become client-package or Apple-app dependencies.
 - Add another package, target, repository, service, manager, or coordinator only when a concrete ownership or testability problem requires it.
 
@@ -60,6 +64,8 @@ The following choices are decided. Revisit one only when new evidence changes it
 - Create one application-lifetime `AWSClient` during Vapor startup and shut it down with the application.
 - Use local AWS profiles or temporary environment credentials for development.
 - Use workload roles and temporary credentials in AWS. Never commit or bake AWS access keys into source, dotenv files, Compose configuration, images, or deployment manifests.
+- Follow the role-based access pattern used by Gale's other AWS projects: federated human roles, a deployment role for automation, and workload roles supplied by the hosting service. Do not create IAM users or long-lived application credentials.
+- The single-host live-test deployment uses a small EC2 instance with an attached instance profile so Soto receives temporary workload credentials. Lightsail is no longer the selected host because its [service-linked role](https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-using-service-linked-roles.html) is for Lightsail itself; AWS documents [instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) as the mechanism for passing an application role to EC2.
 - Separate the ECS task execution role from the DJSwift application task role:
   - The execution role lets ECS pull images, publish logs, and retrieve referenced deployment secrets.
   - The application task role supplies only the AWS API permissions used by Soto inside DJSwift.
@@ -90,7 +96,7 @@ Deployment stages are decided as follows:
 
 1. Local macOS: host-run Vapor with Homebrew PostgreSQL and Redis.
 2. Container parity: Docker Compose for app, PostgreSQL, Redis, migrations, and integration checks.
-3. Live test: one low-cost Lightsail Linux instance running Compose, a TLS reverse proxy, private database/cache networking, persistent volumes, and PostgreSQL backups to S3. This environment is intentionally non-HA.
+3. Live test: one low-cost EC2 Linux instance with an application instance profile, running Compose, a TLS reverse proxy, private database/cache networking, persistent volumes, and PostgreSQL backups to S3. This environment is intentionally non-HA.
 4. Production default: ECS/Fargate with ECR, ALB/ACM, RDS PostgreSQL, a managed Redis-compatible cache, Secrets Manager or Parameter Store, CloudWatch, autoscaling, and rollback-enabled deployments.
 5. Kubernetes option: use EKS only after Kubernetes portability, ecosystem tooling, or team operations become an explicit requirement that justifies its control-plane cost and complexity.
 
@@ -211,6 +217,21 @@ Exit condition: the S3 capability compiles through Soto, remains replaceable in 
 
 Exit condition: product vocabulary and implementation order are durable, current code compiles against the model skeleton, and unused future tables or application layers have not been fabricated.
 
+### Model Deduplication Gate
+
+- [x] Make generated `DJSwiftAPI` schema values the sole stored representation of all retained product data models.
+- [x] Retain `DJSwiftDomain` as the domain-facing target and replace its handwritten structs with zero-storage aliases and ergonomic extensions over generated schemas.
+- [x] Generate `Program`, `ScheduleRule`, `Weekday`, and `PlaybackProvider` from the same OpenAPI document as station and manifest values.
+- [x] Remove `DJSwiftClient` transport-to-domain conversions, conversion-only errors, and mapping-only tests.
+- [x] Change `StationRecord` to perform one persistence-to-canonical mapping and remove its unused parallel mapping.
+- [x] Make iOS, macOS, Vapor, Redis serialization, and future Leaf contexts consume the canonical Codable values through the domain facade without unnecessary `Content` conformances.
+- [x] Define manifest temporal instants as OpenAPI `date-time` values that generate as `Foundation.Date`.
+- [x] Add behavioral JSON round-trip coverage for generated station, programming, provider, manifest-source, and date values without adding an architecture-policing test.
+- [x] Preserve the current HTTP JSON contract and PostgreSQL schema.
+- [x] Reconcile `docs/DATA_MODEL.md`, `docs/PROJECT_PLAN.md`, package ownership documentation, and examples with the resulting single-model flow.
+
+Exit condition: every retained product data model has one OpenAPI-generated Codable stored representation, `DJSwiftDomain` names those exact types without copying them, Fluent retains only justified persistence records, and no conversion exists solely because two Swift structs repeat the same data.
+
 ### Phase 6: Container And Live-Test Deployment
 
 - [ ] Add a hardened root-context production Dockerfile.
@@ -218,7 +239,7 @@ Exit condition: product vocabulary and implementation order are durable, current
 - [ ] Remove the live revert surface and host-published database/cache ports from deployment configuration.
 - [ ] Add a one-shot migration command and PostgreSQL backup/restore runbook.
 - [ ] Build and test the Linux image on Apple silicon for the selected deployment architecture.
-- [ ] Provision the Lightsail live-test host, DNS/TLS, storage, firewall, workload identity strategy, and backups.
+- [ ] Provision the EC2 live-test host, instance-profile application role, DNS/TLS, storage, firewall, and backups.
 - [ ] Deploy by immutable image identifier and verify rollback.
 
 Exit condition: the public live-test endpoint survives application restart, restores its PostgreSQL backup in a rehearsal, and exposes neither credentials nor database/cache ports.
@@ -255,7 +276,14 @@ These findings do not block repository modernization or local development. Befor
 - [ ] Confirm CloudTrail, budgets, billing alerts, and cost anomaly detection.
 - [ ] Create deployment roles only with the infrastructure that consumes them.
 
-No DJSwift IAM role is required up front. The first role decision belongs to the first AWS deployment or Soto-backed feature, when concrete resources and permissions exist.
+DJSwift will use IAM roles. The role categories are decided now, while concrete roles and policies are created with the infrastructure that consumes them:
+
+- a federated human/operator role reached through IAM Identity Center or the account's existing identity provider
+- a deployment role assumed by approved automation rather than a long-lived CI credential
+- an EC2 instance-profile application role for the live-test host
+- separate ECS execution and DJSwift application task roles for production
+
+The application policies remain least-privilege and resource-scoped once the bucket and other concrete resource ARNs exist.
 
 ## Modernization Validation
 
@@ -272,9 +300,9 @@ Validation completed on 2026-08-20 with the configured stable Xcode 26.6 and loc
 ## Risks And Controls
 
 - Local database tests could damage development data. Use dedicated databases and fail closed when test configuration is missing.
-- Generated API types could leak into persistence or UI state. Keep explicit boundary mappings and dependency tests.
+- Parallel API/domain DTOs could return and recreate mapping-only code. Keep one generated Codable model for each product shape and expose it through the `DJSwiftDomain` alias facade.
 - Redis could become an undocumented source of truth. Restrict it to disposable or explicitly durable queue state with defined invalidation and recovery behavior.
-- A single Lightsail host is not highly available. Treat it as disposable live-test infrastructure and rehearse restore before relying on its data.
+- A single EC2 host is not highly available. Treat it as disposable live-test infrastructure and rehearse restore before relying on its data.
 - Compose can hide production assumptions. Preserve a stateless image, explicit configuration, health checks, one-shot migrations, and external service contracts.
 - Kubernetes could consume budget and attention before product fit. Require a concrete EKS trigger before adding cluster manifests.
 - AWS policies can overreach. Separate execution and application roles, scope `iam:PassRole`, validate policies, and refine them from observed CloudTrail activity.
@@ -293,7 +321,7 @@ Validation completed on 2026-08-20 with the configured stable Xcode 26.6 and loc
 
 ### 2026-08-20: Canonical Workspace And Deployment Direction
 
-DJSwift will migrate in place to the current root Xcode workspace bootstrap, place Apple targets under `Apps/`, place the Vapor executable and shared modules under `Packages/`, use Vapor 4 with PostgreSQL and Redis, use Soto for application AWS access, develop against Homebrew services, validate with Docker Compose, deploy the first live test to a small Lightsail Compose host, and prefer ECS/Fargate over Swarm or premature EKS for production scaling.
+DJSwift will migrate in place to the current root Xcode workspace bootstrap, place Apple targets under `Apps/`, place the Vapor executable and shared modules under `Packages/`, use Vapor 4 with PostgreSQL and Redis, use Soto for application AWS access, develop against Homebrew services, validate with Docker Compose, deploy the first live test to a small EC2 Compose host with an instance-profile role, and prefer ECS/Fargate over Swarm or premature EKS for production scaling.
 
 ### 2026-08-20: Local Modernization Through The AWS Boundary
 
@@ -302,3 +330,7 @@ Phases 1–5 are implemented locally. S3 object writes are the first Soto capabi
 ### 2026-08-20: Data Model And Web Foundation
 
 DJSwift separates durable UUID identity from public station slugs, models programming intent separately from generated playback manifests, and distinguishes provider-hosted music from DJSwift-owned audio. Domain vocabulary is established before adding unused database tables. Leaf is the decided public homepage and eventual server-rendered web application, sharing server application behavior with the OpenAPI surface.
+
+### 2026-08-20: Canonical Codable Models And IAM Roles
+
+Model deduplication is complete. The one checked-in `openapi.yaml` generates every retained product data model, including programming models, and its `date-time` fields generate as `Foundation.Date`. `DJSwiftDomain` remains the required domain-facing target and exposes zero-storage aliases and ergonomic behavior over those generated values; Fluent retains only persistence-specific records. DJSwift uses temporary credentials from IAM roles following Gale's established project pattern; the live-test host changes from Lightsail to EC2 so the application can receive an instance-profile role.

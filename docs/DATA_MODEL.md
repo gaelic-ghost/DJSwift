@@ -6,14 +6,24 @@ This document defines DJSwift's durable product vocabulary, identity rules, rela
 
 DJSwift models a station as a programmed stream, not as a playlist. Programs and schedule rules describe intent. A generated manifest is the immutable, time-bounded playback plan produced from that intent. Music stays with an authorized playback provider; DJSwift stores provider references rather than copyrighted music files.
 
-The model is deliberately layered:
+The model is deliberately layered without repeating data shapes:
 
-- `DJSwiftDomain` owns portable product concepts and deterministic behavior.
-- `DJSwiftAPI` projects the subset of those concepts needed across HTTP.
+- `DJSwiftDomain` is the required domain-facing module. It owns zero-storage aliases and ergonomic behavior over generated product values.
+- `DJSwiftAPI` owns the one checked-in `openapi.yaml` and the canonical generated Codable representation of every retained product data model.
 - `DJSwiftServer` owns Fluent records, migrations, and database queries.
-- SwiftUI and the future Leaf web app consume application/API projections; neither owns database models.
+- SwiftUI, Vapor, Redis serialization, and the future Leaf web app consume those canonical Codable values directly; none owns a parallel copy.
 
-Domain, transport, and persistence types may have similar fields, but they are not interchangeable. Mappings between them remain explicit so a database migration or public API change does not silently redefine product behavior.
+Fluent records remain separate only where persistence requires property wrappers, optional pre-insert identity, relations, timestamps, or database lifecycle. The domain module boundary is preserved with type aliases, which are the exact generated types and add no stored properties, encoding, or conversion. Behavior extensions may add domain ergonomics without creating another model.
+
+## Canonical Model Contract
+
+`Packages/DJSwiftAPI/Sources/DJSwiftAPI/openapi.yaml` is the only checked-in model contract. Its `components.schemas` are OpenAPI components, not separate JSON Schema files. Swift OpenAPI Generator produces the canonical Codable Swift values during builds; generated Swift output is not checked in.
+
+`DJSwiftDomain` aliases every retained generated product model: health and errors, stations, programming, manifests, providers, track references, and audio-asset references. Those aliases preserve the domain import boundary while naming the exact same generated types. The only retained representation conversion is `StationRecord` to the canonical generated `Station` because Fluent requires a persistence-specific record.
+
+Absolute instants are declared with OpenAPI `format: date-time` and generate as `Foundation.Date`. This applies to `StationManifest.generatedAt`, `validFrom`, `validThrough`, and `ManifestItem.startsAt`, and to future absolute instants. IANA time-zone identifiers remain strings because they identify zones rather than moments; durations remain integer seconds or minutes because they are intervals.
+
+This completed pass does not change the existing endpoint paths, HTTP JSON shapes, PostgreSQL schema, Redis behavior, or Soto boundary.
 
 ## Identity Rules
 
@@ -27,7 +37,7 @@ Domain, transport, and persistence types may have similar fields, but they are n
 
 ### Implemented Foundation
 
-These portable domain types exist in `Packages/DJSwiftCore/Sources/DJSwiftDomain/`:
+The OpenAPI contract currently generates these canonical values, exposed through aliases in `Packages/DJSwiftCore/Sources/DJSwiftDomain/`:
 
 - `Station`: internal UUID, public slug, name, and tagline.
 - `Program`: a named programming block owned by one station.
@@ -38,7 +48,7 @@ These portable domain types exist in `Packages/DJSwiftCore/Sources/DJSwiftDomain
 - `AudioAssetReference`: a DJSwift-owned non-music audio reference.
 - `ManifestSource`: the explicit distinction between provider music and an owned audio asset.
 
-PostgreSQL currently persists only `StationRecord`. That is intentional: domain types establish vocabulary before migrations are added, while tables are added only with a feature that reads and writes them.
+PostgreSQL currently persists only `StationRecord`. That is intentional: the generated values establish vocabulary before migrations are added, while tables are added only with a feature that reads and writes them. The domain source files contain aliases and extensions rather than parallel stored-property declarations.
 
 ### Next Persistence Slice
 
