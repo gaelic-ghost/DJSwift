@@ -4,42 +4,46 @@ DJSwift is a smart internet radio service with native Apple-platform apps and a 
 
 The first milestone is a curated station prototype:
 
-- `App/`: current XcodeGen-backed SwiftUI bootstrap for iOS 27+ and macOS 27+.
-- `Server/`: Vapor server for station metadata, manifests, and the future creator API.
+- `Apps/`: separate XcodeGen-backed SwiftUI targets for iOS 27+ and macOS 27+.
+- `Packages/DJSwiftCore`: portable station domain models and shared SwiftUI.
+- `Packages/DJSwiftAPI`: the generated OpenAPI client, server, and transport types.
+- `Packages/DJSwiftClient`: app-facing API services and transport/domain mappings.
+- `Packages/DJSwiftServer`: Vapor, Fluent/PostgreSQL, Redis, and Soto-backed server boundaries.
 - `docs/`: product, architecture, and planning notes.
 
-The repository is preparing to migrate in place to one root Xcode workspace with native targets under `Apps/` and shared/client/server packages under `Packages/`. The decided architecture, implementation sequence, local service contract, and AWS deployment runway are recorded in [`ROADMAP.md`](ROADMAP.md). Product intent remains in [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md).
+The supported Apple entry point is `DJSwift.xcworkspace`. The decided architecture, completed modernization work, and AWS deployment runway are recorded in [`ROADMAP.md`](ROADMAP.md). Product intent remains in [`docs/PROJECT_PLAN.md`](docs/PROJECT_PLAN.md).
 
 ## Development
 
-Generate the app project:
+Install XcodeGen, Just, PostgreSQL 18, and Redis with Homebrew. Start PostgreSQL and Redis, then prepare the databases and generated workspace:
 
 ```sh
-cd App
-xcodegen generate
+just setup
 ```
 
-Build the server:
+Open `DJSwift.xcworkspace` for app development. After changing XcodeGen specifications or `.xcconfig` files, regenerate and inspect the workspace with:
 
 ```sh
-cd Server
-swift build
+just align
 ```
 
-Run the database-backed server tests:
+Run all Swift package tests, or the service integration tests alone:
 
 ```sh
-scripts/test-server.sh
+just package-test
+just server-test
 ```
 
-Run the server locally:
+Migrate and run the server locally:
 
 ```sh
-cd Server
-swift run DJSwiftServer serve --hostname 127.0.0.1 --port 8080
+just server-migrate
+just server-run
 ```
 
-The current server reads individual `DATABASE_*` values and defaults to the generated local Vapor credentials. The modernization replaces that with explicit `DATABASE_URL` and `REDIS_URL` contracts, dedicated development and test databases, and Homebrew PostgreSQL and Redis as the default macOS development services.
+The server uses `DATABASE_URL`, `REDIS_URL`, and `REDIS_KEY_NAMESPACE`, with safe Homebrew defaults for macOS. Tests require the dedicated `djswift_test` database and a test-prefixed Redis namespace. Copy `.env.example` only as a reference; never commit a populated `.env` file.
+
+S3 asset storage is implemented behind a narrow Soto protocol but remains disabled until `AWS_REGION` and `AWS_S3_ASSET_BUCKET` are both set. Live AWS verification and IAM provisioning are deliberately deferred until temporary non-root access and the Phase 6 deployment resources exist.
 
 ## Rights
 
