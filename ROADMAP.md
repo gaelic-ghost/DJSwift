@@ -178,7 +178,7 @@ Exit condition: dependencies flow toward core abstractions without cycles, both 
 
 - [x] Add the first canonical OpenAPI document for health, station listing, station detail, and current manifest operations.
 - [x] Configure generated client and Vapor server transport types.
-- [x] Add explicit API-to-domain and domain-to-API mappings.
+- [x] Expose generated schema values through the `DJSwiftDomain` alias facade without model conversion.
 - [x] Replace handwritten duplicated station response shapes at the transport boundary.
 - [x] Add contract and request/response tests.
 
@@ -292,9 +292,10 @@ Validation completed on 2026-08-20 with the configured stable Xcode 26.6 and loc
 - The root XcodeGen graph generated successfully, and `xcodebuild -list` resolved the root workspace and its app/package schemes.
 - The iOS and macOS app targets built with code signing disabled and package-plugin validation skipped for noninteractive validation.
 - Both app builds correctly retained the locked iOS 27 and macOS 27 deployment targets; Xcode 26.6 emitted the expected warning because its selected SDK reports support through 26.5.99.
-- `DJSwiftCore`, `DJSwiftAPI`, and `DJSwiftClient` each passed their SwiftPM tests.
+- `DJSwiftAPI` passed five generated-model JSON tests, `DJSwiftCore` passed two domain-alias behavior tests, and the intentionally test-free `DJSwiftClient` package built successfully.
 - `DJSwiftServer` migrated `djswift_development`, created the initial curated station, and passed all four PostgreSQL/Redis integration tests against isolated test state.
-- Swift OpenAPI Generator successfully generated types, client, and server code from the checked-in contract.
+- Swift OpenAPI Generator produced all retained types, client, and server code from the checked-in contract with no type overrides or additional imports; inspection proved the four manifest instant properties are `Foundation.Date` and no generated type references `DJSwiftDomain`.
+- `git diff --check` passed, no generated plugin output was tracked, and XcodeGen produced no unexpected project-file drift.
 - Soto S3 configuration and lifecycle code compiled without making an AWS request under the unsafe root-authenticated CLI session.
 
 ## Risks And Controls
